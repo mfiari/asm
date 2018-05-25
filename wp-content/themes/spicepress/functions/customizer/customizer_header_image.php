@@ -5,6 +5,7 @@ $wp_customize->remove_control('header_textcolor');
 
 $wp_customize->add_section( 'header_image' , array(
 		'title'      => __('Custom header settings','spicepress'),
+		'priority'   => 125,
    	) );
 	$wp_customize->add_setting(
 	'header_one_name', array(

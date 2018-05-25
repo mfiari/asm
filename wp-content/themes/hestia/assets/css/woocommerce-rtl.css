@@ -1259,6 +1259,11 @@ ul.product_list_widget li:first-child {
 #secondary div[id^=woocommerce_rating_filter] li .star-rating,
 .footer div[id^=woocommerce_rating_filter] li .star-rating {
 	float: right;
+	margin-top: 8px;
+}
+
+.footer div[id^=woocommerce_rating_filter] li > a {
+	display: block;
 }
 
 #secondary div[id^=woocommerce_layered_nav] ul,
@@ -1375,7 +1380,7 @@ ul.product_list_widget li:first-child {
 
 #secondary div[id^=woocommerce_price_filter] .button,
 .footer div[id^=woocommerce_price_filter] .button {
-	float: left;
+	float: left !important;
 	margin-left: -14px;
 }
 

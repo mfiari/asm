@@ -135,8 +135,8 @@ class spicepress_screen {
 
 		wp_localize_script( 'spicepress-info-screen-customizer-js', 'spicepressLiteWelcomeScreenCustomizerObject', array(
 			'nr_actions_required' => $nr_actions_required,
-			'aboutpage' => esc_url( admin_url( 'themes.php?page=spicepress-info#actions_required' ) ),
-			'customizerpage' => esc_url( admin_url( 'customize.php#actions_required' ) ),
+			'aboutpage' => esc_url( admin_url( 'themes.php?page=spicepress-info' ) ),
+			'customizerpage' => esc_url( admin_url( 'customize.php' ) ),
 			'themeinfo' => __('View Theme Info','spicepress'),
 		) );
 	}

@@ -20,7 +20,11 @@ require( ST_THEME_FUNCTIONS_PATH . '/customizer/customizer_header_image.php');
 require( ST_THEME_FUNCTIONS_PATH . '/customizer/customizer_general_settings.php');
 require( ST_THEME_FUNCTIONS_PATH . '/customizer/customizer_recommended_plugin.php');
 require( ST_THEME_FUNCTIONS_PATH . '/customizer/customizer_import_data.php');
+require( ST_THEME_FUNCTIONS_PATH . '/customizer/customizer_bredcrumbs_settings.php');
 require( ST_THEME_FUNCTIONS_PATH . '/customizer/customizer-pro.php');
+
+//Alpha Color Control
+require( ST_THEME_FUNCTIONS_PATH . '/customizer/customizer-alpha-color-picker/class-spicepress-customize-alpha-color-control.php');
 
 
 // set default content width

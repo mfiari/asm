@@ -19,10 +19,16 @@ if ( ! function_exists( 'spiceb_spicepress_slider' ) ) :
 		?>
 	<section class="slider" style="position:relative;">
 		<div class="item" style="background-image:url(<?php echo $home_slider_image; ?>); width: 100%; height: 90vh; background-position: center center; background-size: cover; z-index: 0;" >
+		<?php $slider_image_overlay = get_theme_mod('slider_image_overlay',true);
+			$slider_overlay_section_color = get_theme_mod('slider_overlay_section_color','rgba(0,0,0,0.30)');
+			if($slider_image_overlay != false) { ?>
+			<div class="overlay" style="background-color:<?php echo $slider_overlay_section_color;?>"></div>
+			<?php } ?>
 			<div class="container">
 					<div class="format-standard">
-						<?php if ( ! empty( $home_slider_title ) || is_customize_preview() ) { ?>
+						<?php if( ($home_slider_title) || ($home_slider_discription)!='' ) { ?>
 						<div class="slide-text-bg1">
+						<?php if ( ! empty( $home_slider_title ) || is_customize_preview() ) { ?>
 						<h1><?php echo $home_slider_title;  ?></h1>
 						<?php } 
 						if ( ! empty( $home_slider_discription ) || is_customize_preview() ) {
@@ -30,7 +36,7 @@ if ( ! function_exists( 'spiceb_spicepress_slider' ) ) :
 						<p><?php echo $home_slider_discription; ?></p>
 						<?php } ?>
 						</div>
-						<?php if($home_slider_btn_txt) { ?>
+						<?php } if($home_slider_btn_txt) { ?>
 						<div class="slide-btn-area-sm">						
 						<a <?php if($home_slider_btn_link) { ?> href="<?php echo $home_slider_btn_link; } ?>" 
 						<?php if($home_slider_btn_target) { ?> target="_blank" <?php } ?> class="slide-btn-sm">

@@ -31,10 +31,26 @@ var hestia_customize_control_tabs = function ( $ ) {
 					 * that the customizer animation of changing panels in customizer is done before focusing the input.
                      */
                     setTimeout( function(){
-                        wp.customize.control(data).focus();
+                    	var control = wp.customize.control(data);
+                    	if( typeof control !== 'undefined'){
+                        	wp.customize.control(data).focus();
+						}
                         } , 100 );
 				}
 			);
+
+            customize.previewer.bind(
+                'focus-section',  function( data ) {
+                    /**
+                     * This timeout is here because in firefox this happens before customizer animation of changing panels.
+                     * After it change panels with the input focused, the customizer was moved to right 12px. We have to make sure
+                     * that the customizer animation of changing panels in customizer is done before focusing the input.
+                     */
+                    setTimeout( function(){
+                        wp.customize.section(data).focus();
+                    } , 100 );
+                }
+            );
 
 
             // Hide all controls

@@ -26,6 +26,7 @@ if ( ! function_exists( 'spiceb_spicepress_portfolio' ) ) :
 <section class="portfolio-section">
 	<div class="container">
 	
+		<?php if( ($home_portfolio_section_title) || ($home_portfolio_section_discription)!='' ) { ?>
 		<!-- Section Title -->
 		<div class="row">
 			<div class="col-md-12">
@@ -36,7 +37,8 @@ if ( ! function_exists( 'spiceb_spicepress_portfolio' ) ) :
 				</div>
 			</div>
 		</div>
-		<!-- /Section Title -->		
+		<!-- /Section Title -->
+		<?php } ?>
 				
 		<!-- Item Scroll -->	
 			<div class="row">

@@ -848,6 +848,17 @@ if ( ! function_exists( 'hestia_the_header_top_bar' ) ) :
 			return;
 		}
 
+		$top_bar_class   = array( 'hestia-top-bar' );
+		$has_placeholder =
+			is_customize_preview() &&
+			current_user_can( 'manage_options' ) &&
+			! has_nav_menu( 'top-bar-menu' ) &&
+			! is_active_sidebar( 'sidebar-top-bar' );
+
+		if ( $has_placeholder ) {
+			array_push( $top_bar_class, 'placeholder' );
+		}
+
 		$hestia_top_bar_alignment = get_theme_mod( 'hestia_top_bar_alignment', apply_filters( 'hestia_top_bar_alignment_default', 'right' ) );
 		$menu_class               = 'pull-right';
 		$sidebar_class            = 'pull-left';
@@ -859,8 +870,9 @@ if ( ! function_exists( 'hestia_the_header_top_bar' ) ) :
 
 		<?php
 		if ( $is_callback !== true ) {
+			$top_bar_class = implode( ' ', $top_bar_class );
 			?>
-			<div class="hestia-top-bar">
+			<div class="<?php echo esc_attr( $top_bar_class ); ?>">
 			<?php
 		}
 		?>
@@ -870,18 +882,38 @@ if ( ! function_exists( 'hestia_the_header_top_bar' ) ) :
 				/**
 				 * Call for sidebar
 				 */
+
+				$sidebar_class .= ' col-md-6 ';
+				if ( ! has_nav_menu( 'top-bar-menu' ) && ! current_user_can( 'manage_options' ) ) {
+					$sidebar_class .= ' col-md-12 ';
+				}
+				?>
+
+
+				<?php
 				if ( is_active_sidebar( 'sidebar-top-bar' ) ) {
-					$sidebar_class .= ' col-md-6';
-					if ( ! has_nav_menu( 'top-bar-menu' ) && ! current_user_can( 'manage_options' ) ) {
-						$sidebar_class .= ' col-md-12';
-					}
 					?>
 					<div class="<?php echo esc_attr( $sidebar_class ); ?>">
 						<?php dynamic_sidebar( 'sidebar-top-bar' ); ?>
 					</div>
 					<?php
+				} elseif ( $has_placeholder ) {
+					$sidebar_class .= ' top-widgets-placeholder '
+					?>
+					<div class="<?php echo esc_attr( $sidebar_class ); ?>">
+						<?php
+						hestia_display_customizer_shortcut( 'hestia-top-bar-widget' );
+						echo esc_html__( 'This sidebar is active but empty. In order to use this layout, please add widgets in the sidebar', 'hestia' );
+						?>
+
+					</div>
+					<?php
 				}
-				if ( is_active_sidebar( 'sidebar-top-bar' ) ) {
+				?>
+
+				<?php
+
+				if ( is_active_sidebar( 'sidebar-top-bar' ) || $has_placeholder ) {
 					$menu_class .= ' col-md-6';
 				} else {
 					$menu_class .= ' col-md-12';
@@ -1123,6 +1155,7 @@ if ( ! function_exists( 'hestia_hidden_sidebars' ) ) :
 				dynamic_sidebar( 'sidebar-top-bar' );
 				dynamic_sidebar( 'header-sidebar' );
 				dynamic_sidebar( 'subscribe-widgets' );
+				dynamic_sidebar( 'sidebar-big-title' );
 			}
 			?>
 		</div>
@@ -1422,7 +1455,7 @@ if ( ! function_exists( 'hestia_blog_featured_posts' ) ) {
 		/**
 		 * Check if section is enabled. If it isn't, exit.
 		 */
-		$hestia_featured_posts_category = get_theme_mod( 'hestia_featured_posts_category', 0 );
+		$hestia_featured_posts_category = get_theme_mod( 'hestia_featured_posts_category', apply_filters( 'hestia_featured_posts_category_default', 0 ) );
 		if ( empty( $hestia_featured_posts_category ) || ( count( $hestia_featured_posts_category ) === 1 && empty( $hestia_featured_posts_category[0] ) ) ) {
 			return;
 		}
@@ -1589,10 +1622,80 @@ if ( ! function_exists( 'hestia_filter_archive_title' ) ) {
 		if ( $title === 'Archives' || is_tax( 'post_format' ) ) {
 			return $title;
 		}
-		return preg_replace( '/\w+: /', '', $title, 1 );
+
+		return preg_replace( '/.*: /', '', $title, 1 );
 	}
 }
 
 if ( function_exists( 'hestia_filter_archive_title' ) ) {
 	add_filter( 'get_the_archive_title', 'hestia_filter_archive_title' );
+}
+
+/**
+ * Function to move a sidebar section to another panel and then move controls to this sidebar section.
+ *
+ * @param array  $settings Necessary settings to move the sidebar.
+ * @param object $wp_customize Customizer object.
+ */
+function hestia_move_customizer_sidebar( $settings, $wp_customize ) {
+
+	if ( empty( $settings ) ) {
+		return;
+	}
+
+	if ( empty( $settings['section_id'] ) ) {
+		return;
+	}
+
+	$sidebar_section = $wp_customize->get_section( $settings['section_id'] );
+
+	if ( ! empty( $sidebar_section ) ) {
+		if ( ! empty( $settings['panel'] ) ) {
+			$sidebar_section->panel = $settings['panel'];
+		}
+
+		if ( ! empty( $settings['priority'] ) ) {
+			$sidebar_section->priority = $settings['priority'];
+		}
+
+		if ( ! empty( $settings['controls_to_move'] ) ) {
+			foreach ( $settings['controls_to_move'] as $control_id ) {
+				$control = $wp_customize->get_control( $control_id );
+				if ( ! empty( $control ) ) {
+					$control->section  = $settings['section_id'];
+					$control->priority = -3;
+				}
+			}
+		}
+	}
+}
+
+
+/**
+ * Determine the classes that should be on widgets and slider content.
+ *
+ * @param string $hestia_slider_alignment Slider alignment.
+ *
+ * @return array
+ */
+function hestia_get_slider_elements_class( $hestia_slider_alignment ) {
+	$result_array = array(
+		'slide'  => ' big-title-slider-content text-' . $hestia_slider_alignment,
+		'widget' => ' col-md-5 ',
+	);
+
+	switch ( $hestia_slider_alignment ) {
+		case 'left':
+			$result_array['slide']  .= ' col-md-7 ';
+			$result_array['widget'] .= ' hestia-slider-alignment-left ';
+			break;
+		case 'center':
+			$result_array['slide'] .= ' col-sm-8 col-sm-offset-2 ';
+			break;
+		case 'right':
+			$result_array['slide']  .= ' col-md-7 margin-left-auto ';
+			$result_array['widget'] .= ' hestia-slider-alignment-right ';
+			break;
+	}
+	return $result_array;
 }

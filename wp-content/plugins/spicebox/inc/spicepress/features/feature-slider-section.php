@@ -40,6 +40,31 @@ $selective_refresh = isset( $wp_customize->selective_refresh ) ? 'postMessage' :
 			)
 		);
 		
+		// Image overlay
+		$wp_customize->add_setting( 'slider_image_overlay', array(
+			'default' => true,
+			'sanitize_callback' => 'sanitize_text_field',
+		) );
+		
+		$wp_customize->add_control('slider_image_overlay', array(
+			'label'    => __('Enable slider image overlay', 'spicepress' ),
+			'section'  => 'slider_section',
+			'type' => 'checkbox',
+		) );
+		
+		
+		//Slider Background Overlay Color
+		$wp_customize->add_setting( 'slider_overlay_section_color', array(
+			'sanitize_callback' => 'sanitize_text_field',
+			'default' => 'rgba(0,0,0,0.30)',
+            ) );	
+            
+            $wp_customize->add_control(new SpicePress_Customize_Alpha_Color_Control( $wp_customize,'slider_overlay_section_color', array(
+               'label'      => __('Slider image overlay color','spicepress' ),
+                'palette' => true,
+                'section' => 'slider_section')
+            ) );
+		
 		
 		// Slider title
 		$wp_customize->add_setting( 'home_slider_title',array(

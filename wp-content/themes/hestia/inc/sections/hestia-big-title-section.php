@@ -14,8 +14,9 @@ if ( ! function_exists( 'hestia_big_title' ) ) :
 	 */
 	function hestia_big_title() {
 		hestia_before_big_title_section_trigger();
+		$hestia_slider_alignment = get_theme_mod( 'hestia_slider_alignment', 'center' );
 		?>
-		<div id="carousel-hestia-generic" class="carousel slide" data-ride="carousel">
+		<div id="carousel-hestia-generic" class="carousel slide slide-alignment-<?php echo esc_attr( $hestia_slider_alignment ); ?>" data-ride="carousel">
 			<div class="carousel slide" data-ride="carousel">
 				<div class="carousel-inner">
 					<?php
@@ -75,11 +76,22 @@ endif;
  * @since 1.1.41
  */
 function hestia_show_big_title_content( $content ) {
+
+	$hestia_slider_alignment = get_theme_mod( 'hestia_slider_alignment', 'center' );
+	$slider_elements_classes = hestia_get_slider_elements_class( $hestia_slider_alignment );
+
+	if ( $hestia_slider_alignment === 'right' ) {
+		?>
+		<div class="big-title-sidebar-wrapper <?php echo esc_attr( $slider_elements_classes['widget'] ); ?>">
+			<?php dynamic_sidebar( 'sidebar-big-title' ); ?>
+		</div>
+		<?php
+	}
 	?>
-	<div class="col-md-8 col-md-offset-2 
+	<div class="
 	<?php
-	if ( ! empty( $content['class_to_add'] ) ) {
-		echo esc_attr( $content['class_to_add'] ); }
+	if ( ! empty( $slider_elements_classes['slide'] ) ) {
+		echo esc_attr( $slider_elements_classes['slide'] ); }
 	?>
 ">
 		<?php if ( ! empty( $content['title'] ) ) { ?>
@@ -96,6 +108,15 @@ function hestia_show_big_title_content( $content ) {
 		<?php } ?>
 	</div>
 	<?php
+	if ( $hestia_slider_alignment === 'left' ) {
+		?>
+		<div class="big-title-sidebar-wrapper <?php echo esc_attr( $slider_elements_classes['widget'] ); ?>">
+			<?php dynamic_sidebar( 'sidebar-big-title' ); ?>
+		</div>
+		<?php
+	}
+	?>
+	<?php
 }
 
 /**
@@ -105,12 +126,6 @@ function hestia_show_big_title_content( $content ) {
  */
 function hestia_get_big_title_content() {
 	$section_content = array();
-
-	$hestia_slider_alignment = get_theme_mod( 'hestia_slider_alignment', 'center' );
-	$class_to_add            = ( ! empty( $hestia_slider_alignment ) ? 'text-' . $hestia_slider_alignment : 'text-center' );
-	if ( ! empty( $class_to_add ) ) {
-		$section_content['class_to_add'] = $class_to_add;
-	}
 
 	/* translators: 1 - link to customizer setting. 2 - 'customizer' */
 	$title_default          = current_user_can( 'edit_theme_options' ) ? sprintf( esc_html__( 'Change in the %s', 'hestia' ), sprintf( '<a href="%1$s" class="default-link">%2$s</a>', esc_url( admin_url( 'customize.php?autofocus&#91;control&#93;=hestia_big_title_title' ) ), __( 'Customizer', 'hestia' ) ) ) : false;

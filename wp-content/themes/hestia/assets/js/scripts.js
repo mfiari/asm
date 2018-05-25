@@ -28,18 +28,21 @@ jQuery( document ).ready(
 		);
 
 		// Active Carousel
+        var settings = {
+            interval: 10000
+        };
+        if( typeof requestpost.disable_autoslide !== 'undefined' && requestpost.disable_autoslide === '1' ){
+            settings.interval = false;
+        }
+
 		if ( $( 'body.rtl' ).length === 0 ) {
 			$( '.carousel' ).carousel(
-				{
-					interval: 10000
-				}
+                settings
 			);
 			// RTL
 		} else {
 			$( '.carousel' ).carousel(
-				{
-					interval: 10000
-				}
+                settings
 			);
 			$( '.carousel-control.left' ).click(
 				function () {
@@ -465,21 +468,14 @@ jQuery( document ).ready(
 		function headerSpacingFrontpage() {
 			if ( $( '.home .header .carousel' ).length > 0 ) {
 				var pageHeader = $( '.page-header' ),
-					pageHeaderContainer = $( '.page-header .container' ),
 					windowWidth = $( window ).width(),
 					windowHeight = $( window ).height();
 
 				// Set page-header height
 				if ( windowWidth > 768 ) {
-					pageHeader.css( 'height', (windowHeight * 0.9) ); // 90% of window height
+					pageHeader.css( 'min-height', (windowHeight * 0.9) ); // 90% of window height
 				} else {
-					if ( windowHeight > pageHeaderContainer.outerHeight() ) {
-						pageHeader.css( 'height', windowHeight ); // window height is 100%
-						pageHeaderContainer.removeClass( 'container-height-auto' );
-					} else {
-						pageHeader.css( 'height', 'auto' ); // window height will be auto
-						pageHeaderContainer.addClass( 'container-height-auto' );
-					}
+					pageHeader.css( 'min-height', (windowHeight) ); // 90% of window height
 				}
 			}
 		}

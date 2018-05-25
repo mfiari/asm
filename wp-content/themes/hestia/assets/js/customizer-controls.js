@@ -77,5 +77,17 @@ jQuery( document ).ready(
 				wp.customize.control(data).focus();
 			}
 		);
+
+
+		var headerVideo = customize.control('header_video');
+		if( typeof headerVideo !== 'undefined' ){
+            headerVideo.priority(100);
+		}
+
+		var externalHeader = customize.control('external_header_video');
+		if( typeof externalHeader !== 'undefined' ) {
+            externalHeader.priority(100);
+        }
+
 	}
 );

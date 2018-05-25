@@ -12,28 +12,30 @@ jQuery( document ).ready( function() {
         
         'handleClick':function (parentTabName) {
             var self = this;
-            jQuery( '.customize-control-radio-image .buttonset.customizer-tab input:radio' ).click(
-
-                function() {
+            jQuery( '.customize-control-radio-image .buttonset.customizer-tab input:radio' ).click( function() {
 
                     var controlsToShow = jQuery(this).data('controls');
+
                     var controlsToShowArray = controlsToShow.split(',');
                     var activeTabControlName = jQuery(this).parent().parent().attr('id').replace('customize-control-','');
                     var currentSection = jQuery(this).parent().parent().parent();
                     var allControlsToShow = controlsToShowArray;
 
+
                     controlsToShowArray.forEach(function(controlId){
-                        if( typeof wp.customize.control(controlId).params.is_tab !== 'undefined'){
-                            var grandChildToShow = self.getControlsToShow(controlId);
-                            allControlsToShow = allControlsToShow.concat(grandChildToShow);
+                        if( typeof wp.customize.control(controlId) !== 'undefined' ){
+                            if( typeof wp.customize.control(controlId).params.is_tab !== 'undefined'){
+                               var grandChildToShow = self.getControlsToShow(controlId);
+                               allControlsToShow = allControlsToShow.concat(grandChildToShow);
+                            }
                         }
                     });
+
                     allControlsToShow.push(activeTabControlName);
                     allControlsToShow.push(parentTabName);
 
                     self.hideControlExcept(currentSection, allControlsToShow);
-                }
-            );
+            } );
         },
         
         'initTabDefault': function () {
@@ -51,20 +53,22 @@ jQuery( document ).ready( function() {
             var controlsToShowArray = controlsToShow.split(',');
             var allControlsToShow = controlsToShowArray;
 
-
             /**
              * Beside the controls that are defined in tab, we must check if there is another tab in this tab and
              * to show its controls.
              */
             var self = this;
             controlsToShowArray.forEach(function(controlId){
-                var is_tab = wp.customize.control(controlId).params.is_tab;
-                if( typeof is_tab !== 'undefined' && is_tab === true ){
-                   var grandChildToShow = self.getControlsToShow(controlId);
-                   allControlsToShow = allControlsToShow.concat(grandChildToShow);
+                if ( typeof wp.customize.control( controlId ) !== 'undefined' ) {
+                    var is_tab = wp.customize.control(controlId).params.is_tab;
+                    if( typeof is_tab !== 'undefined' && is_tab === true ){
+                       var grandChildToShow = self.getControlsToShow(controlId);
+                       allControlsToShow = allControlsToShow.concat(grandChildToShow);
+                    }
                 }
             });
             allControlsToShow.push(firstTabControlName);
+
 
             this.hideControlExcept(currentSection, allControlsToShow);
             return firstTabControlName;
@@ -80,12 +84,14 @@ jQuery( document ).ready( function() {
             return [];
         },
         'hideControlExcept':function (section, controls) {
-            jQuery(section).find('.customize-control').show();
-            jQuery(section).find('.customize-control').filter(function (index, control) {
-                var id = jQuery(control).attr('id');
-                id = id.replace('customize-control-','');
-                return controls.indexOf(id) === -1;
-            }).hide();
+            jQuery(section).find('.customize-control').hide();
+            for( var i in controls ){
+                if( controls[i] === 'widgets' ){
+                    jQuery( section ).children( 'li[class*="widget"]' ).css( 'display', 'list-item' );
+                } else {
+                    jQuery(section).find('#customize-control-'+controls[i]).show();
+                }
+            }
         }
     };
     jQuery.hestiaTab.init();

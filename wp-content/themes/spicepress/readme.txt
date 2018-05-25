@@ -3,7 +3,7 @@
 Contributors: SpicePress
 Requires at least: 4.5
 Tested up to: 4.9.5
-Stable tag: 1.3
+Stable tag: 1.4.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -23,6 +23,16 @@ SpicePress WordPress Theme, Copyright (C) 2018, SpiceThemes
 SpicePress is distributed under the terms of the GNU GPL
 
 == Changelog ==
+@Version 1.4.2
+* Added breadcrumbs setting for archive page.
+
+@Version 1.4.1
+* Fixed View Theme Info link issue.
+
+@Version 1.4
+* Fixed Styling issue.
+* Added Overlay setting for slider and testimonial.
+
 @Version 1.3
 * Change class name upgrade to upgrade-spicepress-pro.
 

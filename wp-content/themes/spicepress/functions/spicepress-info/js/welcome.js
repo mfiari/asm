@@ -18,7 +18,7 @@ jQuery(document).ready(function() {
             dataType   : "html",
             url        : spicepressLiteWelcomeScreenObject.ajaxurl,
             beforeSend : function(data,settings){
-				jQuery('.spicepress-tab-pane#actions_required h1').append('<div id="temp_load" style="text-align:center"><img src="' + spicepressLiteWelcomeScreenObject.template_directory + '/inc/spicepress-info/img/ajax-loader.gif" /></div>');
+				jQuery('.spicepress-tab-pane h1').append('<div id="temp_load" style="text-align:center"><img src="' + spicepressLiteWelcomeScreenObject.template_directory + '/inc/spicepress-info/img/ajax-loader.gif" /></div>');
             },
             success    : function(data){
 				jQuery("#temp_load").remove(); /* Remove loading gif */
@@ -28,7 +28,7 @@ jQuery(document).ready(function() {
                 if( typeof spicepress_lite_actions_count !== 'undefined' ) {
                     if( spicepress_lite_actions_count == '1' ) {
                         jQuery('.spicepress-actions-count').remove();
-                        jQuery('.spicepress-tab-pane#actions_required').append('<p>' + spicepressLiteWelcomeScreenObject.no_required_actions_text + '</p>');
+                        jQuery('.spicepress-tab-pane').append('<p>' + spicepressLiteWelcomeScreenObject.no_required_actions_text + '</p>');
                     }
                     else {
                         jQuery('.spicepress-actions-count').text(parseInt(spicepress_lite_actions_count) - 1);

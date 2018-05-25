@@ -55,7 +55,6 @@ get_header();
 <div class="
 <?php
 echo hestia_layout();
-echo esc_attr( $class_of_content );
 ?>
 ">
 

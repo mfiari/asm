@@ -130,7 +130,7 @@ $config = array(
 	'free_pro'            => array(
 		'free_theme_name'     => 'Hestia',
 		'pro_theme_name'      => 'Hestia Pro',
-		'pro_theme_link'      => 'https://themeisle.com/themes/hestia-pro/upgrade/',
+		'pro_theme_link'      => apply_filters( 'hestia_upgrade_link_from_child_theme_filter', 'https://themeisle.com/themes/hestia-pro/upgrade/' ),
 		/* translators: s - theme name */
 		'get_pro_theme_label' => sprintf( __( 'Get %s now!', 'hestia' ), 'Hestia Pro' ),
 		'banner_link'         => 'http://docs.themeisle.com/article/647-what-is-the-difference-between-hestia-and-hestia-pro',

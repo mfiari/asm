@@ -35,7 +35,7 @@ function hestia_blog_settings_lite_customize_register( $wp_customize ) {
 		$wp_customize->add_setting(
 			'hestia_featured_posts_category', array(
 				'sanitize_callback' => 'hestia_sanitize_array',
-				'default'           => 0,
+				'default'           => apply_filters( 'hestia_featured_posts_category_default', 0 ),
 			)
 		);
 

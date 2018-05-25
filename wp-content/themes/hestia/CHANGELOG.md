@@ -1,4 +1,28 @@
 
+ ### v1.1.77 - 2018-05-24 
+ **Changes:** 
+ * Fixed compatibility with WP GDPR Compliance plugin
+* Fixed problem with the Big Title Background not being able to be removed
+* Fixed problem with default content added in the Very Top Bar section
+ 
+ ### v1.1.76 - 2018-05-18 
+ **Changes:** 
+ * Fixed problem with some redundant strings in the lite version
+ 
+ ### v1.1.75 - 2018-05-18 
+ **Changes:** 
+ * NEW Feature to allow a widget area in the Big Title/Slider section
+* [Hestia PRO] Fixed alignment for the Authors Section on the Blog page
+* Fix fatal error on lower PHP versions
+ 
+ ### v1.1.74 - 2018-05-10 
+ **Changes:** 
+ * [Hestia PRO] New Icon picker option in the Pricing section
+* Fixed problem with title meta in the Archive page header when the language is different than English
+* Fixed problem with duplicated titles when using the second header layout option
+* Fixed problem with the Big Title Second Button control not working in the Orfeo child theme
+* Fixed some layout issues with the WooCommerce filtering widgets in the Footer area
+ 
  ### v1.1.73 - 2018-04-24 
  **Changes:** 
  * Improved Cart page layout on mobile

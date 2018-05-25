@@ -2,8 +2,8 @@
 Contributors: spicethemes
 Tags: widget, admin, widgets
 Requires at least: 3.3+
-Tested up to: 4.9.1
-Stable tag: 0.2.4
+Tested up to: 4.9.5
+Stable tag: 0.2.7
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -41,3 +41,21 @@ This plugin create repeater controls in the customizer settings allowing you to 
 = 0.2.4 =
 
 * Added Theme Name
+
+= 0.2.5 =
+
+* Added Theme Name
+* Added Overlay setting for slider and testimonial.
+
+= 0.2.6 =
+
+* Added Child Theme Name
+
+= 0.2.7 =
+
+* Added feedback popup form.
+
+= 0.2.8 =
+
+* Added some more field in feedback form.
+* Style Feedback form.

@@ -44,7 +44,7 @@ if ( version_compare( PHP_VERSION, '5.3.0' ) < 0 ) {
 	return;
 }
 
-define( 'HESTIA_VERSION', '1.1.73' );
+define( 'HESTIA_VERSION', '1.1.77' );
 
 define( 'HESTIA_VENDOR_VERSION', '1.0.1' );
 
@@ -325,6 +325,7 @@ function hestia_widgets_init() {
 		'sidebar-woocommerce'    => esc_html__( 'WooCommerce Sidebar', 'hestia' ),
 		'sidebar-top-bar'        => esc_html__( 'Very Top Bar', 'hestia' ),
 		'header-sidebar'         => esc_html__( 'Navigation', 'hestia' ),
+		'sidebar-big-title'      => apply_filters( 'hestia_big_title_fs_label', esc_html__( 'Big Title Section', 'hestia' ) ),
 	);
 
 	/**
@@ -474,7 +475,8 @@ function hestia_scripts() {
 	);
 	wp_localize_script(
 		'hestia_scripts', 'requestpost', array(
-			'ajaxurl' => admin_url( 'admin-ajax.php' ),
+			'ajaxurl'           => admin_url( 'admin-ajax.php' ),
+			'disable_autoslide' => get_theme_mod( 'hestia_slider_disable_autoplay' ),
 		)
 	);
 
@@ -1242,7 +1244,7 @@ if ( function_exists( 'hestia_setup_theme' ) ) {
 				printf( '<a href="%s" class="notice-dismiss" style="text-decoration:none;"></a>', '?hestia_nag_ignore=0' );
 				echo '<p>';
 				/* translators: Upsell to get the pro version */
-				printf( esc_html__( 'Hestia front-page is not multi-language compatible, for this feature %s.', 'hestia' ), sprintf( '<a href="%1$s" target="_blank">%2$s</a>', esc_url( 'https://themeisle.com/themes/hestia/upgrade/' ), esc_html__( 'Get the PRO version!', 'hestia' ) ) );
+				printf( esc_html__( 'Hestia front-page is not multi-language compatible, for this feature %s.', 'hestia' ), sprintf( '<a href="%1$s" target="_blank">%2$s</a>', esc_url( apply_filters( 'hestia_upgrade_link_from_child_theme_filter', 'https://themeisle.com/themes/hestia/upgrade/' ) ), esc_html__( 'Get the PRO version!', 'hestia' ) ) );
 				echo '</p>';
 				echo '</div>';
 			}
@@ -1260,6 +1262,45 @@ if ( function_exists( 'hestia_setup_theme' ) ) {
 		/* If user clicks to ignore the notice, add that to their user meta */
 		if ( isset( $_GET['hestia_nag_ignore'] ) && '0' == $_GET['hestia_nag_ignore'] ) {
 			add_user_meta( $user_id, 'hestia_ignore_multi_language_upsell_notice', 'true', true );
+		}
+	}
+
+	$theme      = wp_get_theme();
+	$theme_slug = $theme->get( 'Name' );
+
+	if ( isset( $theme_slug ) && ( $theme_slug != 'Fagri' ) ) {
+		add_action( 'admin_notices', 'hestia_fagri_notice' );
+	}
+	/**
+	 * Add a dismissible notice in the dashboard to let users know that we have a new child theme for Hestia, Fagri
+	 * TODO: Remove this in a future release
+	 */
+	function hestia_fagri_notice() {
+		global $current_user;
+		$user_id = $current_user->ID;
+		/* Check that the user hasn't already clicked to ignore the message */
+		if ( ! get_user_meta( $user_id, 'hestia_ignore_fagri_notice' ) ) {
+			echo '<div class="notice updated" style="position:relative;">';
+			printf( '<a href="%s" class="notice-dismiss" style="text-decoration:none;"></a>', '?hestia_nag_ignore_fagri=0' );
+			echo '<p>';
+			/* translators: Install Fagri link */
+			printf( esc_html__( 'We just launched a new free Hestia %s, you might like it.', 'hestia' ), sprintf( '<a href="%1$s">%2$s</a>', admin_url( 'theme-install.php?theme=fagri' ), esc_html__( 'child theme', 'hestia' ) ) );
+			echo '</p>';
+			echo '</div>';
+		}
+	}
+	if ( isset( $theme_slug ) && ( $theme_slug != 'Fagri' ) ) {
+		add_action( 'admin_init', 'hestia_nag_ignore_fagri' );
+	}
+	/**
+	 * Update the hestia_ignore_fagri_notice option to true, to dismiss the notice from the dashboard
+	 */
+	function hestia_nag_ignore_fagri() {
+		global $current_user;
+		$user_id = $current_user->ID;
+		/* If user clicks to ignore the notice, add that to their user meta */
+		if ( isset( $_GET['hestia_nag_ignore_fagri'] ) && '0' == $_GET['hestia_nag_ignore_fagri'] ) {
+			add_user_meta( $user_id, 'hestia_ignore_fagri_notice', 'true', true );
 		}
 	}
 }
@@ -1342,3 +1383,41 @@ if ( ! function_exists( 'hestia_edited_with_pagebuilder' ) ) {
 		return false;
 	}
 }
+
+/**
+ * Append theme name to the upgrade link
+ * If the active theme is child theme of Hestia
+ *
+ * @param string $link - Current link.
+ *
+ * @return string $link - New upgrade link.
+ * @package hestia
+ * @since 1.1.75
+ */
+function hestia_upgrade_link( $link ) {
+
+	$theme_name = wp_get_theme()->get_stylesheet();
+
+	$hestia_child_themes = array(
+		'orfeo',
+		'fagri',
+		'tiny-hestia',
+		'christmas-hestia',
+	);
+
+	if ( $theme_name === 'hestia' ) {
+		return $link;
+	}
+
+	if ( ! in_array( $theme_name, $hestia_child_themes ) ) {
+		return $link;
+	}
+
+	$link = add_query_arg(
+		array(
+			'theme' => $theme_name,
+		), $link
+	);
+	return $link;
+}
+add_filter( 'hestia_upgrade_link_from_child_theme_filter', 'hestia_upgrade_link' );

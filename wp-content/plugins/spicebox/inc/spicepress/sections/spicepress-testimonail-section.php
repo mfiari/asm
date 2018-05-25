@@ -14,10 +14,12 @@ if($testimonial_callout_background != '') { ?>
 <section class="testimonial-section" style="background-image:url('<?php echo esc_url($testimonial_callout_background);?>'); background-repeat: no-repeat; background-position: top left;">
 	<?php } else { ?>
 <section class="testimonial-section">
-<?php } ?>
-
-	<div class="overlay">
-		<div class="container">
+<?php } 
+$testimonial_overlay_section_color = get_theme_mod('testimonial_overlay_section_color','rgba(0,0,0,0.85)');
+$testimonial_image_overlay = get_theme_mod('testimonial_image_overlay',true);
+?>
+	<div class="overlay"<?php if($testimonial_image_overlay != false) { ?>style="background-color:<?php echo $testimonial_overlay_section_color; } ?>">
+	<div class="container">
 		<?php
 		$home_testimonial_section_title = get_theme_mod('home_testimonial_section_title',__('What People Say','spicepress'));
 		$home_testimonial_section_discription = get_theme_mod('home_testimonial_section_discription','Sea summo mazim ex, ea errem eleifend definitionem vim. Ut nec hinc dolor possim mei ludus efficiendi ei sea summo mazim ex.');

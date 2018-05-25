@@ -21,14 +21,16 @@ $customizer_url = admin_url() . 'customize.php' ;
 				<p>
 				<?php esc_html_e( 'You can use this theme for any type of activity. SpicePress is compatible with popular plugins like WPML and Polylang. To help you create an effective and impactful web presence, SpicePress has predefined versions of many pages: Contact, Services, Portfolios, About Us and Blog.', 'spicepress' ); ?>
 				</p>
-				<h1 style="margin-top: 73px;"><?php esc_html_e( "Getting Started", 'spicepress' ); ?></h1>
-				<div style="border-top: 1px solid #eaeaea;">
+				
+				<a style="color:#fff; text-decoration:none;" target="_blank" href="<?php echo esc_url( admin_url( 'customize.php' ) ); ?>">
+				<h1 style="margin-top: 73px; background: #0085ba;border-color: #0073aa #006799 #006799; color: #fff; padding: 5px 10px;"><?php esc_html_e( "Getting Started", 'spicepress' ); ?></h1></a>
+				<div>
 				<p style="margin-top: 16px;">
 				
 				<?php esc_html_e( 'To take full advantage of all the features this theme has to offer, install and activate the SpiceBox plugin. Go to Customize and install the SpiceBox plugin.', 'spicepress' ); ?>
 				
 				</p>
-				<p><a target="_blank" href="<?php echo esc_url( admin_url( 'customize.php' ) ); ?>" class="button button-primary"><?php esc_html_e( 'Go to the Customizer','spicepress');?></a></p>
+				<p><a target="_blank" href="<?php echo esc_url( admin_url( 'customize.php' ) ); ?>" class="button button-primary" style="padding: 7px 15px;height: 40px; font-size: 16px;"><?php esc_html_e( 'Go to the Customizer','spicepress');?></a></p>
 				</div>
 				</div>
 			</div>

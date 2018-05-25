@@ -111,7 +111,6 @@
 /*===================================================================================*/
 
 .author-description p:before { color: #ce1b28; }
-.testmonial-area span { color: #ce1b28; }
 
 /*===================================================================================*/
 /*	CALLOUT SECTION
@@ -174,10 +173,10 @@
 .widget_recent_comments a:hover, .widget_recent_entries a:hover {
 	color: #ce1b28 !important;
 }
-.widget_archive a::before, .widget_categories a::before, .widget_links a::before, 
-.widget_meta a::before, .widget_nav_menu a::before, .widget_pages a::before, 
-.widget_recent_comments a::before, .widget_recent_entries a::before {
-    color: #ce1b28;	
+.widget_archive li:before, .widget_categories li:before, .widget_links li:before, 
+.widget_meta li:before, .widget_nav_menu li:before, .widget_pages li:before, 
+.widget_recent_comments li:before, .widget_recent_entries li:before {
+    color: #ce1b28;
 }
 /*Sidebar Search*/
 form.search-form input.search-submit, 

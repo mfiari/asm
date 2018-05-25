@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "Project-Id-Version: SpicePress\n"
-"POT-Creation-Date: 2018-04-21 14:45+0530\n"
-"PO-Revision-Date: 2018-04-21 14:45+0530\n"
+"POT-Creation-Date: 2018-05-18 17:35+0530\n"
+"PO-Revision-Date: 2018-05-18 17:34+0530\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -132,11 +132,11 @@ msgstr ""
 msgid "Copyright © 2018 SpiceThemes. All right reserved"
 msgstr ""
 
-#: functions.php:49
+#: functions.php:53
 msgid "Page"
 msgstr ""
 
-#: functions.php:98
+#: functions.php:102
 msgid "Primary Menu"
 msgstr ""
 
@@ -323,6 +323,57 @@ msgstr ""
 msgid "Upgrade to Pro"
 msgstr ""
 
+#: functions/customizer/customizer_bredcrumbs_settings.php:5
+msgid "Archive page title"
+msgstr ""
+
+#: functions/customizer/customizer_bredcrumbs_settings.php:14
+#: functions/customizer/customizer_bredcrumbs_settings.php:20
+msgid "Archive"
+msgstr ""
+
+#: functions/customizer/customizer_bredcrumbs_settings.php:28
+#: functions/customizer/customizer_bredcrumbs_settings.php:34
+#: functions/template-tags.php:111
+msgid "Category"
+msgstr ""
+
+#: functions/customizer/customizer_bredcrumbs_settings.php:42
+#: functions/template-tags.php:117
+msgid "All posts by"
+msgstr ""
+
+#: functions/customizer/customizer_bredcrumbs_settings.php:48
+msgid "Author"
+msgstr ""
+
+#: functions/customizer/customizer_bredcrumbs_settings.php:56
+#: functions/customizer/customizer_bredcrumbs_settings.php:62
+#: functions/template-tags.php:36 functions/template-tags.php:123
+msgid "Tag"
+msgstr ""
+
+#: functions/customizer/customizer_bredcrumbs_settings.php:71
+#: functions/template-tags.php:143
+msgid "Search results for"
+msgstr ""
+
+#: functions/customizer/customizer_bredcrumbs_settings.php:77
+msgid "Search"
+msgstr ""
+
+#: functions/customizer/customizer_bredcrumbs_settings.php:85
+#: functions/customizer/customizer_bredcrumbs_settings.php:91
+#: functions/template-tags.php:153
+msgid "404"
+msgstr ""
+
+#: functions/customizer/customizer_bredcrumbs_settings.php:100
+#: functions/customizer/customizer_bredcrumbs_settings.php:106
+#: functions/template-tags.php:129
+msgid "Shop"
+msgstr ""
+
 #: functions/customizer/customizer_general_settings.php:11
 msgid "General settings"
 msgstr ""
@@ -347,11 +398,11 @@ msgstr ""
 msgid "Custom header settings"
 msgstr ""
 
-#: functions/customizer/customizer_header_image.php:15
+#: functions/customizer/customizer_header_image.php:16
 msgid "Header Headline"
 msgstr ""
 
-#: functions/customizer/customizer_header_image.php:27
+#: functions/customizer/customizer_header_image.php:28
 msgid "Header Text"
 msgstr ""
 
@@ -601,47 +652,47 @@ msgid ""
 "pages: Contact, Services, Portfolios, About Us and Blog."
 msgstr ""
 
-#: functions/spicepress-info/sections/getting-started.php:24
+#: functions/spicepress-info/sections/getting-started.php:26
 #: functions/spicepress-info/welcome-screen.php:210
 msgid "Getting Started"
 msgstr ""
 
-#: functions/spicepress-info/sections/getting-started.php:28
+#: functions/spicepress-info/sections/getting-started.php:30
 msgid ""
 "To take full advantage of all the features this theme has to offer, install "
 "and activate the SpiceBox plugin. Go to Customize and install the SpiceBox "
 "plugin."
 msgstr ""
 
-#: functions/spicepress-info/sections/getting-started.php:31
+#: functions/spicepress-info/sections/getting-started.php:33
 msgid "Go to the Customizer"
 msgstr ""
 
-#: functions/spicepress-info/sections/getting-started.php:37
+#: functions/spicepress-info/sections/getting-started.php:39
 msgid "SpicePress theme"
 msgstr ""
 
-#: functions/spicepress-info/sections/getting-started.php:45
+#: functions/spicepress-info/sections/getting-started.php:47
 msgid "Useful Links"
 msgstr ""
 
-#: functions/spicepress-info/sections/getting-started.php:52
+#: functions/spicepress-info/sections/getting-started.php:54
 msgid "Lite Demo"
 msgstr ""
 
-#: functions/spicepress-info/sections/getting-started.php:56
+#: functions/spicepress-info/sections/getting-started.php:58
 msgid "PRO Demo"
 msgstr ""
 
-#: functions/spicepress-info/sections/getting-started.php:67
+#: functions/spicepress-info/sections/getting-started.php:69
 msgid "Your feedback is valuable to us"
 msgstr ""
 
-#: functions/spicepress-info/sections/getting-started.php:70
+#: functions/spicepress-info/sections/getting-started.php:72
 msgid "Premium Theme Support"
 msgstr ""
 
-#: functions/spicepress-info/sections/getting-started.php:80
+#: functions/spicepress-info/sections/getting-started.php:82
 msgid "Premium Theme Details"
 msgstr ""
 
@@ -813,36 +864,12 @@ msgstr ""
 msgid "in"
 msgstr ""
 
-#: functions/template-tags.php:36
-msgid "Tag"
-msgstr ""
-
 #: functions/template-tags.php:99 functions/template-tags.php:103
 #: functions/template-tags.php:107 functions/template-tags.php:113
 #: functions/template-tags.php:119 functions/template-tags.php:125
-#: functions/template-tags.php:147
+#: functions/template-tags.php:131 functions/template-tags.php:147
 #, php-format
 msgid "%1$s %2$s"
-msgstr ""
-
-#: functions/template-tags.php:111
-msgid "Category Archive"
-msgstr ""
-
-#: functions/template-tags.php:117
-msgid "All posts by"
-msgstr ""
-
-#: functions/template-tags.php:123
-msgid "Tag Archive"
-msgstr ""
-
-#: functions/template-tags.php:143
-msgid "Search results for"
-msgstr ""
-
-#: functions/template-tags.php:153
-msgid "Error 404: Page Not Found"
 msgstr ""
 
 #: functions/template-tags.php:157
@@ -953,9 +980,9 @@ msgstr ""
 #: inc/spicepress/features/feature-portfolio-section.php:127
 #: inc/spicepress/features/feature-portfolio-section.php:175
 #: inc/spicepress/features/feature-service-section.php:35
-#: inc/spicepress/features/feature-slider-section.php:51
-#: inc/spicepress/features/feature-testimonial-section.php:44
-#: inc/spicepress/features/feature-testimonial-section.php:102
+#: inc/spicepress/features/feature-slider-section.php:76
+#: inc/spicepress/features/feature-testimonial-section.php:70
+#: inc/spicepress/features/feature-testimonial-section.php:128
 msgid "Title"
 msgstr ""
 
@@ -964,9 +991,9 @@ msgstr ""
 #: inc/spicepress/features/feature-portfolio-section.php:141
 #: inc/spicepress/features/feature-portfolio-section.php:189
 #: inc/spicepress/features/feature-service-section.php:48
-#: inc/spicepress/features/feature-slider-section.php:63
-#: inc/spicepress/features/feature-testimonial-section.php:57
-#: inc/spicepress/features/feature-testimonial-section.php:88
+#: inc/spicepress/features/feature-slider-section.php:88
+#: inc/spicepress/features/feature-testimonial-section.php:83
+#: inc/spicepress/features/feature-testimonial-section.php:114
 msgid "Description"
 msgstr ""
 
@@ -974,7 +1001,7 @@ msgstr ""
 #: inc/spicepress/features/feature-portfolio-section.php:108
 #: inc/spicepress/features/feature-portfolio-section.php:157
 #: inc/spicepress/features/feature-slider-section.php:35
-#: inc/spicepress/features/feature-testimonial-section.php:71
+#: inc/spicepress/features/feature-testimonial-section.php:97
 msgid "Image"
 msgstr ""
 
@@ -1026,27 +1053,35 @@ msgstr ""
 msgid "Enable slider"
 msgstr ""
 
-#: inc/spicepress/features/feature-slider-section.php:46
-msgid "Welcome to SpicePress Theme"
+#: inc/spicepress/features/feature-slider-section.php:50
+msgid "Enable slider image overlay"
+msgstr ""
+
+#: inc/spicepress/features/feature-slider-section.php:63
+msgid "Slider image overlay color"
 msgstr ""
 
 #: inc/spicepress/features/feature-slider-section.php:71
+msgid "Welcome to SpicePress Theme"
+msgstr ""
+
+#: inc/spicepress/features/feature-slider-section.php:96
 msgid "Read more"
 msgstr ""
 
-#: inc/spicepress/features/feature-slider-section.php:76
+#: inc/spicepress/features/feature-slider-section.php:101
 msgid "Button Text"
 msgstr ""
 
-#: inc/spicepress/features/feature-slider-section.php:83
+#: inc/spicepress/features/feature-slider-section.php:108
 msgid "#"
 msgstr ""
 
-#: inc/spicepress/features/feature-slider-section.php:88
+#: inc/spicepress/features/feature-slider-section.php:113
 msgid "Button Link"
 msgstr ""
 
-#: inc/spicepress/features/feature-slider-section.php:101
+#: inc/spicepress/features/feature-slider-section.php:126
 msgid "Open link in new tab"
 msgstr ""
 
@@ -1062,34 +1097,42 @@ msgstr ""
 msgid "Background Image"
 msgstr ""
 
-#: inc/spicepress/features/feature-testimonial-section.php:39
-#: inc/spicepress/sections/spicepress-testimonail-section.php:22
+#: inc/spicepress/features/feature-testimonial-section.php:43
+msgid "Enable testimonial image overlay"
+msgstr ""
+
+#: inc/spicepress/features/feature-testimonial-section.php:56
+msgid "Testimonial image overlay color"
+msgstr ""
+
+#: inc/spicepress/features/feature-testimonial-section.php:65
+#: inc/spicepress/sections/spicepress-testimonail-section.php:24
 msgid "What People Say"
 msgstr ""
 
-#: inc/spicepress/features/feature-testimonial-section.php:97
-#: inc/spicepress/sections/spicepress-testimonail-section.php:24
+#: inc/spicepress/features/feature-testimonial-section.php:123
+#: inc/spicepress/sections/spicepress-testimonail-section.php:26
 msgid "Alice Culan"
 msgstr ""
 
-#: inc/spicepress/features/feature-testimonial-section.php:110
-#: inc/spicepress/sections/spicepress-testimonail-section.php:25
+#: inc/spicepress/features/feature-testimonial-section.php:136
+#: inc/spicepress/sections/spicepress-testimonail-section.php:27
 msgid "UI Developer"
 msgstr ""
 
-#: inc/spicepress/features/feature-testimonial-section.php:115
+#: inc/spicepress/features/feature-testimonial-section.php:141
 msgid "Designation"
 msgstr ""
 
-#: inc/spicepress/sections/spicepress-features-section.php:155
+#: inc/spicepress/sections/spicepress-features-section.php:156
 msgid "Easy to Use"
 msgstr ""
 
-#: inc/spicepress/sections/spicepress-features-section.php:162
+#: inc/spicepress/sections/spicepress-features-section.php:163
 msgid "Multi-Purpose"
 msgstr ""
 
-#: inc/spicepress/sections/spicepress-features-section.php:169
+#: inc/spicepress/sections/spicepress-features-section.php:170
 msgid "Responsive Design"
 msgstr ""
 
@@ -1098,7 +1141,7 @@ msgid "SpiceBox"
 msgstr ""
 
 #. Description of the plugin/theme
-msgid "Enhances Spicethemes with extra functionality."
+msgid "Enhances SpiceThemes with extra functionality."
 msgstr ""
 
 #. Author of the plugin/theme

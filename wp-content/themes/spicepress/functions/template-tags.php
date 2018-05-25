@@ -90,7 +90,7 @@ add_filter( 'user_contactmethods', 'spicepress_author_social_icons', 10, 1);
 function spicepress_archive_page_title(){
 	if( is_archive() )
 	{
-		$archive_text = get_theme_mod('archive_prefix','Archives for');
+		$archive_text = get_theme_mod('archive_prefix','Archive');
 		
 		echo '<div class="page-title wow bounceInLeft animated" ata-wow-delay="0.4s"><h1>';
 		
@@ -108,7 +108,7 @@ function spicepress_archive_page_title(){
 		  
         elseif( is_category() ):
 		
-			$category_text = get_theme_mod('category_prefix',__('Category Archive','spicepress'));
+			$category_text = get_theme_mod('category_prefix',__('Category','spicepress'));
 			
 			printf( __( '%1$s %2$s', 'spicepress' ), $category_text, single_cat_title( '', false ) );
 			
@@ -120,15 +120,15 @@ function spicepress_archive_page_title(){
 			
 		elseif( is_tag() ):
 			
-			$tag_text = get_theme_mod('tag_prefix',__('Tag Archive','spicepress'));
+			$tag_text = get_theme_mod('tag_prefix',__('Tag','spicepress'));
 			
 			printf( __( '%1$s %2$s', 'spicepress' ), $tag_text, single_tag_title( '', false ) );
 			
-			// elseif( is_shop() ):
+		 elseif( is_shop() ):
 			
-			// $shop_text = get_theme_mod('shop_prefix',__('Shop','spicepress'));
+		$shop_text = get_theme_mod('shop_prefix',__('Shop','spicepress'));
 			
-			// printf( __( '%1$s %2$s', 'spicepress' ), $shop_text, single_tag_title( '', false ));
+		printf( __( '%1$s %2$s', 'spicepress' ), $shop_text, single_tag_title( '', false ));
 			
         elseif( is_archive() ): 
 		the_archive_title( '<h1>', '</h1>' ); 
@@ -150,7 +150,7 @@ function spicepress_archive_page_title(){
 	}
 	elseif( is_404() )
 	{
-		$breadcrumbs_text = get_theme_mod('404_prefix',__('Error 404: Page Not Found','spicepress'));
+		$breadcrumbs_text = get_theme_mod('404_prefix',__('404','spicepress'));
 		
 		echo '<div class="page-title wow bounceInLeft animated" ata-wow-delay="0.4s"><h1>';
 		

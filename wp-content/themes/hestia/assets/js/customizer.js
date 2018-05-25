@@ -19,7 +19,19 @@
 		    this.liveTextReplace();
 		    this.liveBackgroundReplace();
 			this.livePricingSection();
+			this.sliderHeightFix();
         },
+
+		'sliderHeightFix': function() {
+				var windowWidth = $( window ).width();
+				var windowHeight = $( window ).height();
+
+			if ( windowWidth > 768 ) {
+					$( '.carousel .page-header' ).css( 'min-height', (windowHeight * 0.9) ); // 90% of window height
+				} else {
+					$( '.carousel .page-header' ).css( 'min-height', (windowHeight) ); // 90% of window height
+				}
+		},
 
         /**
 		 * This function handle the action when a user clicks on show/hide customizer control.
@@ -170,6 +182,44 @@
                     );
                 }
             );
+
+            function updatePricingTableIcon( newval, tableNumber ) {
+
+                var accent_color = wp.customize._value.accent_color();
+                var packageSelector = '.home .hestia-pricing .hestia-table-' + tableNumber + ' .hestia-pricing-icon-wrapper';
+
+                if ( newval ) {
+                    $( packageSelector + ' i' ).removeClass().addClass( 'fa' ).addClass( newval );
+                    $( packageSelector ).addClass( 'pricing-has-icon' ).css( {'display' : 'block', 'color' : accent_color } );
+                } else {
+                    $( packageSelector + '.pricing-has-icon .card-title' ).css( { 'font-size' : '60px', 'margin-top' : '30px'  } );
+                    $( packageSelector + '.pricing-has-icon .card-title small' ).css( { 'color' : '#777', 'top' : '-17px', 'font-size' : '26px', 'font-weight' : 'normal', 'line-height' : '1'  } );
+                    $( packageSelector + '.pricing-has-icon' ).removeClass( 'pricing-has-icon' ).css( 'display', 'none' );
+                }
+            }
+
+            /* Live refresh for pricing icon, table one */
+            wp.customize(
+                'hestia_pricing_table_one_icon', function( value ) {
+                    value.bind(
+                        function (newval) {
+                            updatePricingTableIcon( newval, 'one' );
+                        }
+                    );
+                }
+            );
+
+            /* Live refresh for pricing icon, table two */
+            wp.customize(
+                'hestia_pricing_table_two_icon', function( value ) {
+                    value.bind(
+                        function (newval) {
+                            updatePricingTableIcon( newval, 'two' );
+                        }
+
+                    );
+                }
+            );
 		},
 
         /**
@@ -213,6 +263,7 @@
             this.handleShowHideShortcut();
             this.addShortcutForMenu();
             this.handleTextEditor();
+            this.handleTopBarWidgetFocus();
         },
 
         /**
@@ -273,6 +324,12 @@
                         wp.customize.preview.send( 'hestia-customize-focus-control', element );
                     }
                 });
+            });
+        },
+
+        'handleTopBarWidgetFocus': function(){
+            $('.customize-partial-edit-shortcut-hestia-top-bar-widget').on('click', function(){
+                wp.customize.preview.send('focus-section', 'sidebar-widgets-sidebar-top-bar');
             });
         },
 
@@ -549,6 +606,9 @@
 					var accentColorVariation2 = convertHex( newval, 20 );
 					var accentColorVariation3 = convertHex( newval, 42 );
 
+					// Pricing icon
+                    $( '.home .hestia-pricing .card-pricing .content .hestia-pricing-icon-wrapper' ).css( 'color', newval) ;
+
 					// LINKS HOVER STYLE
 					var style = '<style class="hover-styles">', el;
 
@@ -736,9 +796,10 @@
                         	if( typeof wp.customize._value.hestia_slider_type === 'function' ) {
                                 var sliderType = wp.customize._value.hestia_slider_type();
                                 if (placement.partial.id === controlName && sliderType) {
+	                                $.hestiaCustomizeLive.sliderHeightFix();
                                     if (sliderType === 'parallax') {
                                         $.hestiaParallax.parallaxMove();
-                                    } else {
+                                    } else if ( typeof wp.customHeader !== 'undefined' ) {
                                         wp.customHeader.initialize();
                                     }
                                 }

@@ -13,10 +13,11 @@ if ( ! function_exists( 'spiceb_spicepress_service' ) ) :
 		$section_is_empty = empty( $spicepress_service_content ) && empty( $home_service_section_discription ) && empty( $home_service_section_title );
 		if($home_service_section_enabled !='off')
 		{	
-		if( ($home_service_section_title) || ($home_service_section_discription)!='' ) { ?>
+		?>
 	    <!-- Section Title -->
 <section class="service-section">
 	<div class="container">		
+		<?php if( ($home_service_section_title) || ($home_service_section_discription)!='' ) { ?>
 		<div class="row">
 			<div class="col-md-12">
 				<div class="section-header">

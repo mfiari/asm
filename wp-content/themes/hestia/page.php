@@ -11,7 +11,7 @@ $hestia_header_layout = get_theme_mod( 'hestia_header_layout', 'default' );
 if ( ( $hestia_header_layout !== 'classic-blog' ) || ( ( hestia_woocommerce_check() && ( is_cart() || is_checkout() ) ) ) ) { ?>
 	<div id="primary" class="<?php echo hestia_boxed_layout_header(); ?> page-header header-small" data-parallax="active">
 		<?php
-		if ( ( hestia_woocommerce_check() && ! is_cart() && ! is_checkout() && $hestia_header_layout !== 'no-content' ) || ! hestia_woocommerce_check() ) {
+		if ( ( hestia_woocommerce_check() && ! is_cart() && ! is_checkout() && $hestia_header_layout !== 'no-content' ) || ( ! hestia_woocommerce_check() && ( $hestia_header_layout == 'default' ) ) ) {
 			hestia_show_header_content( 'page' );
 		}
 		hestia_output_wrapper_header_background( false );

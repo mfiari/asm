@@ -32,6 +32,32 @@ $selective_refresh = isset( $wp_customize->selective_refresh ) ? 'postMessage' :
 			  'section'  => 'testimonial_section',
 			  'settings' => 'testimonial_callout_background',
 			) ) );
+			
+			// Image overlay
+		$wp_customize->add_setting( 'testimonial_image_overlay', array(
+			'default' => true,
+			'sanitize_callback' => 'sanitize_text_field',
+		) );
+		
+		$wp_customize->add_control('testimonial_image_overlay', array(
+			'label'    => __('Enable testimonial image overlay', 'spicepress' ),
+			'section'  => 'testimonial_section',
+			'type' => 'checkbox',
+		) );
+		
+		
+		//Testimonial Background Overlay Color
+		$wp_customize->add_setting( 'testimonial_overlay_section_color', array(
+			'sanitize_callback' => 'sanitize_text_field',
+			'default' => 'rgba(0,0,0,0.85)',
+            ) );	
+            
+            $wp_customize->add_control(new SpicePress_Customize_Alpha_Color_Control( $wp_customize,'testimonial_overlay_section_color', array(
+               'label'      => __('Testimonial image overlay color','spicepress' ),
+                'palette' => true,
+                'section' => 'testimonial_section')
+            ) );
+			
 		
 		// testimonial section title
 		$wp_customize->add_setting( 'home_testimonial_section_title',array(

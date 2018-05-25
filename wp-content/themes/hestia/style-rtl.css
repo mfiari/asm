@@ -5,7 +5,7 @@ Theme URI:      https://themeisle.com/themes/hestia-pro/
 Author:         ThemeIsle
 Author URI:     https://themeisle.com
 Description:    Hestia Pro is a modern WordPress theme for professionals. It fits creative business, small businesses (restaurants, wedding planners, sport/medical shops), startups, corporate businesses, online agencies and firms, portfolios, ecommerce (WooCommerce), and freelancers. It has a multipurpose one-page design, widgetized footer, blog/news page and a clean look, is compatible with: Flat Parallax Slider, Photo Gallery, Travel Map and Elementor Page Builder . The theme is responsive, WPML, Retina ready, SEO friendly, and uses Material Kit for design.
-Version:        1.1.73
+Version:        1.1.77
 License:        GNU General Public License v2 or later
 License URI:    http://www.gnu.org/licenses/gpl-2.0.html
 Text Domain:    hestia-pro
@@ -1410,6 +1410,14 @@ legend {
 
 .container {
 	max-width: 100%;
+}
+
+.margin-left-auto {
+	margin-right: auto;
+}
+
+.margin-right-auto {
+	margin-left: auto;
 }
 
 .animation-transition-fast,
@@ -3546,6 +3554,30 @@ body.admin-bar .navbar {
 .card-pricing .card-title {
 	margin-top: 30px;
 }
+.card-pricing .hestia-pricing-icon-wrapper {
+	width: 80px;
+	height: 80px;
+	margin: 10px auto 0;
+	border: 1px solid #e5e5e5;
+	border-radius: 50%;
+	color: #e91e63;
+}
+.card-pricing .hestia-pricing-icon-wrapper i {
+	color: inherit;
+	font-size: 30px;
+	line-height: 80px;
+}
+.card-pricing .hestia-pricing-icon-wrapper.pricing-has-icon + .card-title {
+	margin-top: 20px;
+	font-size: 25px;
+}
+.card-pricing .hestia-pricing-icon-wrapper.pricing-has-icon + .card-title small {
+	top: 0;
+	color: inherit;
+	font-size: inherit;
+	font-weight: inherit;
+	line-height: inherit;
+}
 .card-pricing .content {
 	padding: 15px !important;
 }
@@ -3570,6 +3602,10 @@ body.admin-bar .navbar {
 }
 .card-pricing ul li b {
 	color: #3c4858;
+}
+
+.card-pricing.card-plain .hestia-pricing-icon-wrapper {
+	border-color: #d6d1d1;
 }
 
 .card-background {
@@ -3729,7 +3765,29 @@ table > tbody > tr:last-child,
 	top: 0;
 }
 .carousel .page-header {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
 	z-index: -2;
+}
+.carousel .page-header .row {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	max-width: 100%;
+	margin: 0;
+	padding: 0 15px;
+
+	-webkit-align-items: center;
+	align-items: center;
+	-webkit-box-align: center;
+	-webkit-box-flex: 1;
+	-webkit-flex: 1;
+	-ms-flex: 1;
+	flex: 1;
+	-ms-flex-align: center;
 }
 .carousel .carousel-control.left,
 .carousel .carousel-control.right {
@@ -3740,12 +3798,12 @@ table > tbody > tr:last-child,
 	text-align: center;
 }
 .carousel .item .container {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
 	position: relative;
-	top: 50%;
 	padding: 100px 0;
-	-webkit-transform: translateY(-50%);
-	-ms-transform: translateY(-50%);
-	transform: translateY(-50%);
 }
 .carousel .carousel-control {
 	text-shadow: none;
@@ -3796,6 +3854,48 @@ table > tbody > tr:last-child,
 
 #carousel-hestia-generic .carousel {
 	overflow: hidden;
+}
+
+.big-title-sidebar-wrapper .widget {
+	padding: 30px 0;
+}
+.big-title-sidebar-wrapper .pirate-forms-contact-widget {
+	padding: 10px;
+	border-radius: 6px;
+	color: #3c4858;
+	background: #fff;
+	box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+}
+
+.hestia-slider-alignment-left .pirate-forms-contact-widget {
+	margin-right: auto;
+}
+.hestia-slider-alignment-left .widget_media_image img {
+	display: block;
+	margin-right: auto;
+}
+
+.hestia-slider-alignment-right .pirate-forms-contact-widget {
+	margin-left: auto;
+}
+.hestia-slider-alignment-right .widget_media_image img {
+	display: block;
+	margin-left: auto;
+}
+
+@media (max-width: 1600px) {
+	.carousel-control.left {
+		width: 50px;
+	}
+	.carousel-control.left i {
+		right: 10px;
+	}
+	.carousel-control.right {
+		width: 50px;
+	}
+	.carousel-control.right i {
+		left: 10px;
+	}
 }
 
 
@@ -5303,6 +5403,16 @@ table > tbody > tr:last-child,
 .hestia-top-bar ul li.dropdown .caret {
 	display: none;
 }
+.hestia-top-bar.placeholder {
+	box-sizing: content-box;
+	border: 2px dashed;
+}
+.hestia-top-bar.placeholder .top-widgets-placeholder {
+	display: inline-block;
+	position: relative;
+	vertical-align: top;
+	cursor: pointer;
+}
 
 .hestia-top-bar li a[href*="facebook.com"] {
 	font-size: 0;
@@ -5488,7 +5598,7 @@ table > tbody > tr:last-child,
 #authors-on-blog .card-profile {
 	text-align: right;
 }
-#authors-on-blog .col-md-6:nth-child(2n+1) {
+#authors-on-blog .col-ms-6:nth-child(2n+1) {
 	clear: both;
 }
 
@@ -5892,9 +6002,13 @@ aside .widget a {
 	content: "";
 }
 
+#parallax_move ~ .item .page-header,
+#wp-custom-header ~ .item .page-header {
+	overflow: inherit;
+}
+
 .page-header {
 	overflow: hidden;
-	height: 90vh;
 	margin: 0;
 	padding: 0;
 	border: 0;
@@ -6463,6 +6577,10 @@ aside .widget a {
 		right: 0 !important;
 		background: transparent;
 	}
+
+	.big-title-sidebar-wrapper .pirate-forms-contact-widget {
+		max-width: 370px;
+	}
 }
 @media (min-width: 783px) and (min-width: 601px) {
 	body.admin-bar .navbar-default:not(.navbar-transparent) {
@@ -6971,6 +7089,15 @@ aside .widget a {
 		margin-top: 115px;
 	}
 
+	.big-title-sidebar-wrapper {
+		width: 100%;
+		padding: 0;
+	}
+	.big-title-sidebar-wrapper .pirate-forms-contact-widget {
+		max-width: 370px;
+		margin: 0 auto;
+	}
+
 	.hestia_right .header-sidebar-wrapper {
 		display: none;
 	}
@@ -7178,6 +7305,27 @@ aside .widget a {
 		margin-top: 55px;
 	}
 
+	.carousel .page-header .row {
+		flex-direction: column;
+		padding: 0;
+		text-align: center;
+
+		-webkit-box-direction: normal;
+		-webkit-box-orient: vertical;
+		-webkit-box-pack: center;
+		-webkit-flex-direction: column;
+		-ms-flex-direction: column;
+		-ms-flex-pack: center;
+		-webkit-justify-content: center;
+		justify-content: center;
+	}
+	.carousel .page-header .row .margin-right-auto,
+	.carousel .page-header .row .margin-left-auto {
+		margin: inherit;
+	}
+	.carousel .page-header .row .big-title-slider-content {
+		text-align: center;
+	}
 	.carousel .item .container.container-height-auto {
 		top: 0;
 		-webkit-transform: none;

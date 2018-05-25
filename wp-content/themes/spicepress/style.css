@@ -5,7 +5,7 @@ Author: spicethemes.com
 Author URI: https://spicethemes.com
 Description: SpicePress is a responsive and fully customizable business template. It is a perfect solution for creative and corporate websites, restaurants, wedding planners, law firms, finance, consulting, travel, photography, recipes, design, sport/medical shops, startups, online agencies, portfolios, E-commerce (WooCommerce), and freelancers. The advanced admin panel will enable you to personalize SpicePress without any technical information. SpicePress is translation ready and supports popular plugins like WPML, Polylang, WooCommerce and Contact Form 7. Check out also SpicePress PRO, the premium version, which has a lot more to offer.
 Tags: one-column, two-columns, right-sidebar, flexible-header, custom-colors, custom-menu, custom-logo, editor-style, featured-images, footer-widgets, sticky-post, threaded-comments, translation-ready 
-Version: 1.3
+Version: 1.4.2
 License URI: spicethemes.com
 License: GNU General Public License v3 or later
 Text Domain: spicepress 
@@ -203,6 +203,17 @@ img { max-width: 100%; display: block; height: auto; }
 /*===================================================================================*/
 /*	HOMEPAGE OWL CAROUSEL SLIDER SECTION
 /*===================================================================================*/
+
+.slider .overlay {
+    content:"";
+    display: block;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 0; 
+}
 
 .page-seperate { background: url("images/page-shadow.png") no-repeat center bottom; padding-bottom: 70px; margin: 0px; }
 #slider-carousel { margin: 0px; }
@@ -515,7 +526,7 @@ img { max-width: 100%; display: block; height: auto; }
 #slider-carousel .owl-prev, #slider-carousel .owl-prev:hover { left: 10px; }
 #slider-carousel .owl-next, #slider-carousel .owl-next:hover { right: 10px; }
 }
-.slide-shadow { padding-bottom: 21px; margin: 0 0 60px; }	
+.slide-shadow { padding-bottom: 21px; margin: 0 0 60px; }
 
 
 /*===================================================================================*/
@@ -753,7 +764,7 @@ img { max-width: 100%; display: block; height: auto; }
 	padding: 0; 
 	width: 100%;
 }
-.testimonial-section .overlay { background: none repeat scroll 0 0 rgba(0, 0, 0, 0.6); height: 100%; padding: 70px 0 55px; position: relative; width: 100%; }
+.testimonial-section .overlay { height: 100%; padding: 70px 0 55px; position: relative; width: 100%; }
 .testmonial-area { margin: 0px 0 30px; padding: 0 50px 0 50px; }
 .description-box { background-color: #ffffff; border-radius: 0px; margin: 0 0 35px; padding: 30px; position: relative; min-height: 145px; }
 .description-box:before { 
@@ -773,7 +784,7 @@ img { max-width: 100%; display: block; height: auto; }
 .author-description { display: block; margin-bottom: 0px; margin-top: 0; }
 .author-description p { font-weight: 500; font-size: 1.125rem; }
 .author-description p:before { content: '\f10d'; font-family: FontAwesome; font-size: 1.500rem; line-height: 0.1em; margin-right: 0.50em;    vertical-align: -0.1em; position: relative; top: 0px; }
-.testmonial-area h4 { color: #ffffff; font-weight: 500; font-size: 1.000rem; margin-bottom: 5px; letter-spacing: 1px; display: block; margin-top: 0; }
+.testmonial-area h4 { color: #ffffff; font-weight: 600; font-size: 1.000rem; margin-bottom: 5px; letter-spacing: 1px; display: block; margin-top: 0; }
 .testmonial-area span { padding: 0 0 0 4px; }
 .testmonial-area .media-body { margin: 13px 0 0; }
 .author-box { float: left; margin: 0 35px 20px 0; width: 100px; height: auto;  }
@@ -1337,28 +1348,30 @@ a:hover, a:focus { text-decoration: none !important; }
 .widget_pages li:last-child, .widget_recent_comments li:last-child, .widget_recent_entries li:last-child {
     padding-bottom: 0px;
 	border-bottom: 0 none !important;
+	margin-bottom: 0;
 }
 .widget_archive li, .widget_categories li, .widget_links li, .widget_meta li, .widget_nav_menu li, .widget_pages li, 
 .widget_recent_comments li, .widget_recent_entries li {
     font-weight: 500;
 	border-bottom: 1px dotted #c5d1dc;
-    margin-right: 0;
-    padding: 12px 0;
-    vertical-align: top;
+    margin: 0 0 12px;
+    padding: 0px 0px 12px 25px;
+	position: relative;
+}
+.widget_archive li:before, .widget_categories li:before, .widget_links li:before, 
+.widget_meta li:before, .widget_nav_menu li:before, .widget_pages li:before, 
+.widget_recent_comments li:before, .widget_recent_entries li:before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    content: '\f00c';
+    font-family: 'FontAwesome';
 }
 .widget_archive a, .widget_categories a, .widget_links a, .widget_meta a, .widget_nav_menu a, .widget_pages a, 
 .widget_recent_comments a, .widget_recent_entries a {
     border: 0 none;
 	transition: all 0.3s ease 0s;
 	color: #64646d;
-}
-.widget_archive a::before, .widget_categories a::before, .widget_links a::before, 
-.widget_meta a::before, .widget_nav_menu a::before, .widget_pages a::before, 
-.widget_recent_entries a::before {	
-	content: "\f00c";
-	font-family: FontAwesome;
-	margin-right: 10px;
-	margin-left: 1px;
 }
 .widget_recent_comments a::before {	
 	content: "";
@@ -1386,8 +1399,9 @@ form.search-form span.screen-reader-text {
 form.search-form input.search-field {
 	margin: 0 0 20px;
 }
+input[type="reset"] { background-color: #21202e; }
 form.search-form input.search-submit, 
-input[type="submit"],
+input[type="submit"], input[type="reset"], 
 .woocommerce-product-search input[type="submit"] {
 	color: #ffffff;
 	border: 0 none;
@@ -1404,13 +1418,13 @@ input[type="submit"],
 input[type="text"], input[type="email"], input[type="url"], input[type="password"], 
 input[type="search"], input[type="number"], input[type="tel"], input[type="range"], 
 input[type="date"], input[type="month"], input[type="week"], input[type="time"], 
-input[type="datetime"], input[type="datetime-local"], input[type="color"] {
+input[type="datetime"], input[type="datetime-local"], input[type="color"], select {
 	height: 45px;	
 }
 input[type="text"], input[type="email"], input[type="url"], input[type="password"], 
 input[type="search"], input[type="number"], input[type="tel"], input[type="range"], 
 input[type="date"], input[type="month"], input[type="week"], input[type="time"], 
-input[type="datetime"], input[type="datetime-local"], input[type="color"], textarea {
+input[type="datetime"], input[type="datetime-local"], input[type="color"], select, textarea {
 	padding: 6px 12px;
 	border-radius: 0px;
 	font-size: 0.875rem;
@@ -1425,6 +1439,8 @@ input[type="datetime"], input[type="datetime-local"], input[type="color"], texta
     display: block;
     width: 100%;
 }
+.radio, .checkbox { display: inline-block; }
+input[type="radio"], input[type="checkbox"] { margin: 0.625rem 0.5rem 0 0; }
 
 /* Navigation Post*/
 .navigation.pagination { margin: 0px 0 20px; overflow: hidden; padding: 0; text-align: center; display: block; }
@@ -1596,7 +1612,7 @@ input[type="datetime"], input[type="datetime-local"], input[type="color"], texta
 /*===================================================================================*/
 
 /* Ul and ol lists */
-ul, ol { font-family: 'Lato', Sans-serif; font-weight: normal; margin: 20px 0 0; }
+ul, ol { font-weight: normal; margin: 20px 0 0; }
 ul > li, ol > li { margin: 0; padding: 4px 0; }
 ul, ol { padding: 0 0 0 20px; }
 li > ul, li > ol { margin-bottom: 0; margin-left: 1.5em; }
@@ -1665,7 +1681,6 @@ address{ font-style: italic;}
 .sticky{}
 cite{ font-style: italic !important; }
 .bypostauthor{}
-img.alignnone{ display: block; margin: 0 auto; height: auto; width: 100%; }
 #attachment_907 { width: 100% !important; }
 .alignnone img{ display: block; height: auto; width: 99%; }
 img.alignleft, .wp-caption.alignleft{ margin-right: 30px; }
@@ -1707,6 +1722,32 @@ a img.alignright { float: right; }
 a img.alignnone { margin: 5px 20px 20px 0; }
 a img.alignleft { float: left; }
 a img.aligncenter { display: block; margin-left: auto; margin-right: auto; }
+@media screen and (min-width: 30rem){
+	img.alignleft { float: left; margin-right: 20px; }
+}
+.alignleft { display: inline; float: left; margin-right: 20px; }
+.aligncenter { clear: both; display: block; margin-left: auto; margin-right: auto; }
+fieldset {
+    margin-bottom: 1rem;
+    border: 1px solid #e9e9e9;
+    margin: 0 2px;
+    padding: 0.35rem 0.950rem 0.75rem;
+}
+fieldset p { margin: 0px 0 20px; }
+legend {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	font-size: 1.500rem;
+	color: #0f0f16;
+	font-weight: 600;
+	display: table;
+	max-width: 100%;
+	border-bottom: none;
+	width: auto;
+	padding: 0;
+	white-space: normal;
+}
 
 /*===================================================================================*/
 /*	CONTACT SECTION

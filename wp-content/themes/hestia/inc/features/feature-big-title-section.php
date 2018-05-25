@@ -14,7 +14,7 @@
  */
 function hestia_big_title_customize_register( $wp_customize ) {
 
-	$selective_refresh = isset( $wp_customize->selective_refresh ) ? true : false;
+	$selective_refresh = isset( $wp_customize->selective_refresh ) ? 'postMessage' : 'refresh';
 
 	$wp_customize->add_section(
 		'hestia_big_title', array(
@@ -43,11 +43,6 @@ function hestia_big_title_customize_register( $wp_customize ) {
 							'label'    => esc_html__( 'Big Title Section', 'hestia' ),
 							'icon'     => 'picture-o',
 							'controls' => array(
-								'hestia_big_title_background',
-								'hestia_big_title_title',
-								'hestia_big_title_text',
-								'hestia_big_title_button_text',
-								'hestia_big_title_button_link',
 								'hestia_slider_alignment',
 							),
 						),
@@ -68,30 +63,58 @@ function hestia_big_title_customize_register( $wp_customize ) {
 			'hestia_slider_alignment', array(
 				'default'           => 'center',
 				'sanitize_callback' => 'hestia_sanitize_alignment_options',
-				'transport'         => $selective_refresh ? 'postMessage' : 'refresh',
+				'transport'         => $selective_refresh,
 			)
 		);
 
 		$wp_customize->add_control(
 			new Hestia_Customize_Control_Radio_Image(
 				$wp_customize, 'hestia_slider_alignment', array(
-					'label'    => esc_html__( 'Layout', 'hestia' ),
-					'priority' => 35,
-					'section'  => 'hestia_big_title',
-					'choices'  => array(
+					'label'     => esc_html__( 'Layout', 'hestia' ),
+					'priority'  => 10,
+					'section'   => 'hestia_big_title',
+					'is_tab'    => true,
+					'is_subtab' => true,
+					'choices'   => array(
 						'left'   => array(
-							'url' => 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJYAAABqCAMAAABpj1iyAAAAD1BMVEX///8AhbrV1dU+yP/u9/q7NurVAAAAV0lEQVR4Ae3UIRKAUAxDwfLh/mfGYsB0JkNh18U9lXoXYD2rNlnrqrtlyZI1P8udAgAAAA1bkixZsmZlHUkFjJL/JFmyZMkC+Jf9lixZsnJkyQIAAOALTnXkEDyBKHzQAAAAAElFTkSuQmCC',
+							'url'      => 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJYAAABqBAMAAACsf7WzAAAAD1BMVEX////V1dUAhbo+yP/u9/pRM+FMAAAAZElEQVR42u3WsQ2AIBRFUd0AV3AFV3D/mSwsBI2BRIofPKchobjVK/7EQJZSit+az5/aq/WjVs99AQAjWxs8L4ZL0hqutTcoWt0OSa2orfdVaWl9b/XcqpbWvbXltLQCtwCA3AHhDKjAJvDMEwAAAABJRU5ErkJggg==',
+							'controls' => array(
+								'hestia_big_title_background',
+								'hestia_big_title_title',
+								'hestia_big_title_text',
+								'hestia_big_title_button_text',
+								'hestia_big_title_button_link',
+								'hestia_big_title_widgets_title',
+								'widgets',
+							),
 						),
 						'center' => array(
-							'url' => 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJYAAABqBAMAAACsf7WzAAAAD1BMVEX///8AhbrV1dU+yP/u9/q7NurVAAAAV0lEQVR42u3SsQ2AMAxFwYBYgA0QK7AC+89EQQOiIIoogn3XWHLxql8IZL1b+m+N5+ftaiVqfbkvACC8YW6iFbg17U0KCVQNTUvr0YK+bFdaWklaAPAXB4dWiADE72glAAAAAElFTkSuQmCC',
+							'url'      => 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJYAAABqBAMAAACsf7WzAAAAD1BMVEX///8AhbrV1dU+yP/u9/q7NurVAAAAV0lEQVR42u3SsQ2AMAxFwYBYgA0QK7AC+89EQQOiIIoogn3XWHLxql8IZL1b+m+N5+ftaiVqfbkvACC8YW6iFbg17U0KCVQNTUvr0YK+bFdaWklaAPAXB4dWiADE72glAAAAAElFTkSuQmCC',
+							'controls' => array(
+								'hestia_big_title_background',
+								'hestia_big_title_title',
+								'hestia_big_title_text',
+								'hestia_big_title_button_text',
+								'hestia_big_title_button_link',
+							),
 						),
 						'right'  => array(
-							'url' => 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJYAAABqBAMAAACsf7WzAAAAD1BMVEX///8AhbrV1dU+yP/u9/q7NurVAAAAV0lEQVR42u3SsQ2AMAxFwYBYgA0QK7AC+8+UIg2IAhRRWPFdY8nFq35hIPvdFr81t8/b1UrU+nNfAEAO09pFa+DWcnYpZPJpcVpajxbEdVxpaSVpAUAsFRQdiACd2e8sAAAAAElFTkSuQmCC',
+							'url'      => 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJYAAABqBAMAAACsf7WzAAAAD1BMVEX////V1dUAhbo+yP/u9/pRM+FMAAAAYElEQVR42u3SuQ2AMBBFQaAC3AIt0AL910RAAkICS1xrPJOstMGLfsOPpK0+fqtdPmdXq6LWnfsCAKJJe4+0hhxaVbWmHB9sVStCq7u8Ly2td7aqpXVsXNPSKrAFAOWbASNgr0b3Lh1kAAAAAElFTkSuQmCC',
+							'controls' => array(
+								'hestia_big_title_background',
+								'hestia_big_title_title',
+								'hestia_big_title_text',
+								'hestia_big_title_button_text',
+								'hestia_big_title_button_link',
+								'hestia_big_title_widgets_title',
+								'widgets',
+							),
 						),
 					),
 				)
 			)
 		);
+
 	}
 
 	/**
@@ -100,7 +123,7 @@ function hestia_big_title_customize_register( $wp_customize ) {
 	$wp_customize->add_setting(
 		'hestia_big_title_background', array(
 			'sanitize_callback' => 'esc_url_raw',
-			'transport'         => $selective_refresh ? 'postMessage' : 'refresh',
+			'transport'         => $selective_refresh,
 		)
 	);
 
@@ -120,7 +143,7 @@ function hestia_big_title_customize_register( $wp_customize ) {
 	$wp_customize->add_setting(
 		'hestia_big_title_title', array(
 			'sanitize_callback' => 'wp_kses_post',
-			'transport'         => $selective_refresh ? 'postMessage' : 'refresh',
+			'transport'         => $selective_refresh,
 		)
 	);
 
@@ -138,7 +161,7 @@ function hestia_big_title_customize_register( $wp_customize ) {
 	$wp_customize->add_setting(
 		'hestia_big_title_text', array(
 			'sanitize_callback' => 'wp_kses_post',
-			'transport'         => $selective_refresh ? 'postMessage' : 'refresh',
+			'transport'         => $selective_refresh,
 		)
 	);
 
@@ -156,7 +179,7 @@ function hestia_big_title_customize_register( $wp_customize ) {
 	$wp_customize->add_setting(
 		'hestia_big_title_button_text', array(
 			'sanitize_callback' => 'sanitize_text_field',
-			'transport'         => $selective_refresh ? 'postMessage' : 'refresh',
+			'transport'         => $selective_refresh,
 		)
 	);
 	$wp_customize->add_control(
@@ -173,7 +196,7 @@ function hestia_big_title_customize_register( $wp_customize ) {
 	$wp_customize->add_setting(
 		'hestia_big_title_button_link', array(
 			'sanitize_callback' => 'esc_url_raw',
-			'transport'         => $selective_refresh ? 'postMessage' : 'refresh',
+			'transport'         => $selective_refresh,
 		)
 	);
 	$wp_customize->add_control(
@@ -181,6 +204,22 @@ function hestia_big_title_customize_register( $wp_customize ) {
 			'label'    => esc_html__( 'Button URL', 'hestia' ),
 			'section'  => 'hestia_big_title',
 			'priority' => 30,
+		)
+	);
+
+	$wp_customize->add_setting(
+		'hestia_big_title_widgets_title', array(
+			'sanitize_callback' => 'wp_kses',
+		)
+	);
+
+	$wp_customize->add_control(
+		new Hestia_Customizer_Heading(
+			$wp_customize, 'hestia_big_title_widgets_title', array(
+				'label'    => esc_html__( 'Big Title Section', 'hestia' ) . ' ' . esc_html__( 'Sidebar', 'hestia' ),
+				'section'  => 'hestia_big_title',
+				'priority' => 35,
+			)
 		)
 	);
 
@@ -227,11 +266,48 @@ function hestia_big_title_customize_register( $wp_customize ) {
 		$wp_customize->get_setting( 'hestia_big_title_button_text' )->default = esc_html__( 'Change in the Customizer', 'hestia' );
 		$wp_customize->get_setting( 'hestia_big_title_button_link' )->default = esc_url( '#' );
 	}
+
+	$settings = array(
+		'section_id'       => 'sidebar-widgets-sidebar-big-title',
+		'panel'            => 'hestia_frontpage_sections',
+		'priority'         => 5,
+		'controls_to_move' => array(
+			'hestia_slider_tabs',
+			'hestia_big_title_background',
+			'hestia_big_title_title',
+			'hestia_big_title_text',
+			'hestia_big_title_button_text',
+			'hestia_big_title_button_link',
+			'hestia_slider_alignment',
+			'hestia_parallax_layer1',
+			'hestia_parallax_layer2',
+			'hestia_big_title_widgets_title',
+		),
+	);
+
+	hestia_move_customizer_sidebar( $settings, $wp_customize );
 }
 
 add_action( 'customize_register', 'hestia_big_title_customize_register' );
 
+/**
+ * Add controls for second button in Big Title Section
+ * Compatibility with orfeo child theme
+ *
+ * @return array - new args for radio image control
+ * package hestia
+ * since 1.1.74
+ */
+function hestia_add_orfeo_button_controls( $args ) {
 
+	array_push( $args['choices']['slider']['controls'], 'orfeo_big_title_second_button_text', 'orfeo_big_title_second_button_link' );
+
+	return $args;
+}
+if ( defined( 'ORFEO_VERSION' ) ) {
+
+	add_filter( 'hestia_slider_tabs_filter_args', 'hestia_add_orfeo_button_controls' );
+}
 
 /**
  * Add selective refresh for big title section controls.
@@ -340,13 +416,18 @@ function hestia_big_title_image_callback() {
 	$hestia_parallax_layer2 = get_theme_mod( 'hestia_parallax_layer2' );
 	if ( empty( $hestia_parallax_layer1 ) || empty( $hestia_parallax_layer2 ) ) {
 		$hestia_big_title_background = get_theme_mod( 'hestia_big_title_background' );
-		if ( ! empty( $hestia_big_title_background ) ) { ?>
-			<style class="big-title-image-css">
-				#carousel-hestia-generic .header-filter {
-					background-image: url(<?php echo esc_url( $hestia_big_title_background ); ?>) !important;
+		?>
+		<style class="big-title-image-css">
+			#carousel-hestia-generic .header-filter {
+				<?php
+				if ( ! empty( $hestia_big_title_background ) ) {
+					echo 'background-image: url(' . esc_url( $hestia_big_title_background ) . ') !important;';
+				} else {
+					echo 'background-image: none !important;';
 				}
-			</style>
-			<?php
-		}
+				?>
+			}
+		</style>
+		<?php
 	}
 }

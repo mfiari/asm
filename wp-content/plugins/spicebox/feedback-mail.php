@@ -2,7 +2,7 @@
 
 if( isset($_POST["Resason"]) || isset($_POST["TextReason"])) {
 $HtmlText ='';
-$pass = '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'; // not the key, but the token
+$pass = '#'; // Add your key
 
 $url = 'https://api.sendgrid.com/';
 

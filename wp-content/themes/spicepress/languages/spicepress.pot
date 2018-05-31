@@ -948,6 +948,58 @@ msgstr ""
 msgid "https://spicethemes.com"
 msgstr ""
 
+#: inc/feedback-pop-up-form.php:6
+msgid "Quick Feedback"
+msgstr ""
+
+#: inc/feedback-pop-up-form.php:8
+msgid "Your feedback is valuable for us."
+msgstr ""
+
+#: inc/feedback-pop-up-form.php:17
+msgid "What we have done wrong?"
+msgstr ""
+
+#: inc/feedback-pop-up-form.php:21
+msgid "Very limited options"
+msgstr ""
+
+#: inc/feedback-pop-up-form.php:26
+msgid "I want to try a new design, I don't like Spicepress style"
+msgstr ""
+
+#: inc/feedback-pop-up-form.php:27
+msgid "If possible tell us the name of the theme you have selected"
+msgstr ""
+
+#: inc/feedback-pop-up-form.php:31
+msgid "Is not working with a plugin that I need"
+msgstr ""
+
+#: inc/feedback-pop-up-form.php:32
+msgid "Plugin Name"
+msgstr ""
+
+#: inc/feedback-pop-up-form.php:36
+msgid "I don't know how to make it look like demo"
+msgstr ""
+
+#: inc/feedback-pop-up-form.php:40
+msgid "Other"
+msgstr ""
+
+#: inc/feedback-pop-up-form.php:41
+msgid "Please share the reason"
+msgstr ""
+
+#: inc/feedback-pop-up-form.php:46
+msgid "Submit"
+msgstr ""
+
+#: inc/feedback-pop-up-form.php:47
+msgid "Skip &amp; Deactivate"
+msgstr ""
+
 #: inc/spicepress/features/feature-portfolio-section.php:6
 msgid "Portfolio settings"
 msgstr ""

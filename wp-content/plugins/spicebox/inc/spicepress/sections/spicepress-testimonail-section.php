@@ -15,7 +15,7 @@ if($testimonial_callout_background != '') { ?>
 	<?php } else { ?>
 <section class="testimonial-section">
 <?php } 
-$testimonial_overlay_section_color = get_theme_mod('testimonial_overlay_section_color','rgba(0,0,0,0.85)');
+$testimonial_overlay_section_color = get_theme_mod('testimonial_overlay_section_color','rgba(0,0,0,0.6)');
 $testimonial_image_overlay = get_theme_mod('testimonial_image_overlay',true);
 ?>
 	<div class="overlay"<?php if($testimonial_image_overlay != false) { ?>style="background-color:<?php echo $testimonial_overlay_section_color; } ?>">

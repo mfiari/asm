@@ -3,7 +3,7 @@ Contributors: smashballoon
 Tags: Facebook, Facebook feed, Facebook posts, Facebook wall, Facebook page
 Requires at least: 3.0
 Tested up to: 4.9
-Stable tag: 2.6.1
+Stable tag: 2.6.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -264,6 +264,13 @@ You no longer need your own Access Token to use the Custom Facebook Feed Plugin,
 9. It's super easy to display your Facebook feed in any page or post
 
 == Changelog ==
+
+= 2.6.2 =
+* Fix: Replaced all HTTP links with HTTPS
+* Fix: Fixed a rare issue which affected the layout of other Facebook widgets
+* Fix: Automatically remove slashes at the end of the Page ID as it caused an error
+* Fix: The API response test in the System Info now only tests with your token if you have the "Use my own Access Token" setting enabled
+* Fix: Fixed an issue which caused an occasional API rate limit error
 
 = 2.6.1 =
 * Fix: Removed an unnecessary API call

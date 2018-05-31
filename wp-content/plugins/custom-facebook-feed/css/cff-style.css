@@ -404,7 +404,7 @@
 .cff-likebox .fb_iframe_widget span{
   width: 100% !important;
 }
-.cff-likebox iframe{
+.cff-likebox .fb_iframe_widget iframe{
   margin: 0;
   position: relative;
   top: 0;

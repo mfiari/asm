@@ -558,8 +558,9 @@ function cff_settings_page() {
         <h3><?php _e('System Info &nbsp; <i style="color: #666; font-size: 11px; font-weight: normal;">Click the text below to select all</i>', 'custom-facebook-feed'); ?></h3>
 
         <?php
+        $cff_use_own_token = get_option( 'cff_show_access_token' );
         $access_token = get_option( $access_token );
-        if ( $access_token == '' || empty($access_token) ) $access_token = '366766273734391|b9894da4ba6d4d75b500d13fda893810';
+        if ( $access_token == '' || empty($access_token) || ( !isset($cff_use_own_token) || empty($cff_use_own_token) ) ) $access_token = '297576260660946|iCDRJNnG9EAJplgB-vkMR2q2ob0';
         ?>
         <?php $posts_json = cff_fetchUrl("https://graph.facebook.com/".get_option( trim($page_id) )."/feed?access_token=". trim($access_token) ."&limit=1"); ?>
 

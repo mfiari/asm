@@ -49,7 +49,7 @@ $selective_refresh = isset( $wp_customize->selective_refresh ) ? 'postMessage' :
 		//Testimonial Background Overlay Color
 		$wp_customize->add_setting( 'testimonial_overlay_section_color', array(
 			'sanitize_callback' => 'sanitize_text_field',
-			'default' => 'rgba(0,0,0,0.85)',
+			'default' => 'rgba(0,0,0,0.6)',
             ) );	
             
             $wp_customize->add_control(new SpicePress_Customize_Alpha_Color_Control( $wp_customize,'testimonial_overlay_section_color', array(

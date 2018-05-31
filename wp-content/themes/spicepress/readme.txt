@@ -23,6 +23,10 @@ SpicePress WordPress Theme, Copyright (C) 2018, SpiceThemes
 SpicePress is distributed under the terms of the GNU GPL
 
 == Changelog ==
+@Version 1.4.3
+* Update pot file.
+* Added contact us and about us template
+
 @Version 1.4.2
 * Added breadcrumbs setting for archive page.
 

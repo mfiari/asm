@@ -3,7 +3,7 @@
 Plugin Name: Custom Facebook Feed
 Plugin URI: http://smashballoon.com/custom-facebook-feed
 Description: Add completely customizable Facebook feeds to your WordPress site
-Version: 2.6.1
+Version: 2.6.2
 Author: Smash Balloon
 Author URI: http://smashballoon.com/
 License: GPLv2 or later
@@ -24,7 +24,7 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-define('CFFVER', '2.6.1');
+define('CFFVER', '2.6.2');
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 //Include admin
@@ -662,6 +662,9 @@ function display_cff($atts) {
     //If the Page ID contains a query string at the end then remove it
     if ( stripos( $page_id, '?') !== false ) $page_id = substr($page_id, 0, strrpos($page_id, '?'));
 
+    //Always remove slash from end of Page ID
+    $page_id = preg_replace('{/$}', '', $page_id);
+
     //Get show posts attribute. If not set then default to 25
     $show_posts = $atts['num'];
     if (empty($show_posts)) $show_posts = 25;
@@ -679,17 +682,31 @@ function display_cff($atts) {
         '1983264355330375|e5c100f6d4b768abb560e7df1771ac89',
         '209804229584368|3a2d59f876e0df3d42d829f8a1569636',
         '274376249625432|03d7cc70158f4b720a124c11aad5606e',
-        '366766273734391|b9894da4ba6d4d75b500d13fda893810',
+        '927474184059774|ekzzwIV9JnvG-ELYWut9wIvf4Y0',
         '157849737751172|1wgUYn-UwVvoiZkvROi7yi2aIRw',
         '140081703552|rtuoT3AGRIzb-z_PPUlOnN9iYA0',
         '322095208287051|pbCTS6jPuhjR18sl2UPhKQw7eyY',
-        '997699293639941|RSjkTO49QlpW3allK2Xqb87wmnc',
+        '1439406912938596|4JDCXisJ2d-1EWeObBt27DybH5c',
         '1042396375891598|gn2HiZgDgjTbCMcXsSb6VK91PqM',
-        '2025362117734029|_Y9UZU0qE-EYJrDpgLTvuD9EcVw',
+        '348613608818294|d4gRX7tNppCrI-DrOGof_O8gwvg',
         '502797619766223|fuoqcs_7_9HPokY0C296S4VtB0o',
-        '1399391236784002|zx6bKxr-c8xfOPvCc0ZxP6vyGXs'
+        '1591407604237466|cHUFs9XDDJa7LDUW9zBxirwGAHE',
+        '277269689412168|o3k5mzmHsT-prqc2qizxk_DoXEQ',
+        '386881278380301|NW_PiECD9TLVe0UNMsB5H9HkPEo',
+        '697312047120344|p8ST5dkrub6IoBZsClmyRBTScB0',
+        '1134584793234186|763Jh88I-PuO8_slARazfgucxFg',
+        '257106408010811|MwCorr7qsyIeU_GjdPFIEw3-_P8',
+        '1693018934313805|VYDjx69NpsgkDEAm79cYD0fxJBk',
+        '1298990730176646|rU4QhoOaYPWQng6-k_QdxRoVNaA',
+        '1788677371359317|UU7yeB5dsKOT8xLsLA9xSNu4OMQ',
+        '1876405409266356|VT8hdBxkbAf6-PCq-TosrtiMilU',
+        '128947497630881|rlgLr8wtMUWRw7hbcLcsgoa01-k',
+        '963645750343660|1mgCt1EhXAI0o51tYpZ7O6dThKM',
+        '177899259380474|JgdlhmU-J0dq55bKng0xywDIgIo',
+        '1106367462776766|Pj4xBlwzMH53yCQw7-h_prMExQg',
+        '131153380694449|jxU6_J0SobvxNG-pzJW8MKsI0w8'
     );
-    if ($access_token == '' || !$cff_show_access_token) $access_token = $access_token_array[rand(0, 15)];
+    if ($access_token == '' || !$cff_show_access_token) $access_token = $access_token_array[rand(0, 29)];
 
     //Check whether a Page ID has been defined
     if ($page_id == '') {
@@ -927,7 +944,7 @@ function display_cff($atts) {
 
                 if( empty($FBdata->error) && empty($FBdata->error_msg) && $FBdata !== null ) $cff_content .= 'Error: No posts available for this Facebook ID';
 
-                $cff_content .= '<br />Please refer to our <a href="http://smashballoon.com/custom-facebook-feed/docs/errors/" target="_blank">Error Message Reference</a>.';
+                $cff_content .= '<br />Please refer to our <a href="https://smashballoon.com/custom-facebook-feed/docs/errors/" target="_blank">Error Message Reference</a>.';
 
             }
             
@@ -1114,7 +1131,7 @@ function display_cff($atts) {
                 if (empty($news->link)) {
                     if ($cff_link_to_timeline == true){
                         //Link to page
-                        $link = 'http://facebook.com/' . $page_id;
+                        $link = 'https://facebook.com/' . $page_id;
                     } else {
                         //Link to status
                         $link = "https://www.facebook.com/" . $page_id . "/posts/" . $PostID[1];
@@ -1175,7 +1192,7 @@ function display_cff($atts) {
                                 ( isset($message_tag->id) ) ? $message_tag = $message_tag : $message_tag = $message_tag[0];
 
                                 $tag_name = $message_tag->name;
-                                $tag_link = '<a href="http://facebook.com/' . $message_tag->id . '">' . $message_tag->name . '</a>';
+                                $tag_link = '<a href="https://facebook.com/' . $message_tag->id . '">' . $message_tag->name . '</a>';
 
                                 $post_text_story = str_replace($tag_name, $tag_link, $post_text_story);
                             }
@@ -1231,7 +1248,7 @@ function display_cff($atts) {
                                         //Don't use the story tag in this case otherwise it changes '__ created an event' to '__ created an Name Of Event'
                                         //Don't use the story tag if it's a page as it causes an issue when sharing a page: Smash Balloon Dev shared a Smash Balloon.
                                     } else {
-                                        $b = '<a href="http://facebook.com/' . $message_tags_arr[$tag]['id'] . '" target="_blank">' . $message_tags_arr[$tag]['name'] . '</a>';
+                                        $b = '<a href="https://facebook.com/' . $message_tags_arr[$tag]['id'] . '" target="_blank">' . $message_tags_arr[$tag]['name'] . '</a>';
                                         $c = $message_tags_arr[$tag]['offset'];
                                         $d = $message_tags_arr[$tag]['length'];
                                         $post_text_story = cff_mb_substr_replace( $post_text_story, $b, $c, $d);
@@ -1334,7 +1351,7 @@ function display_cff($atts) {
                                 ( isset($message_tag->id) ) ? $message_tag = $message_tag : $message_tag = $message_tag[0];
 
                                 $tag_name = $message_tag->name;
-                                $tag_link = '<a href="http://facebook.com/' . $message_tag->id . '">' . $message_tag->name . '</a>';
+                                $tag_link = '<a href="https://facebook.com/' . $message_tag->id . '">' . $message_tag->name . '</a>';
 
                                 $post_text_message = str_replace($tag_name, $tag_link, $post_text_message);
                             }
@@ -1384,7 +1401,7 @@ function display_cff($atts) {
                                     if( $message_tags_arr[$tag]['offset'] == $cff_msg_duplicate_offset ){
                                         //If it has the same offset as another tag then don't display it
                                     } else {
-                                        $b = '<a href="http://facebook.com/' . $message_tags_arr[$tag]['id'] . '">' . $message_tags_arr[$tag]['name'] . '</a>';
+                                        $b = '<a href="https://facebook.com/' . $message_tags_arr[$tag]['id'] . '">' . $message_tags_arr[$tag]['name'] . '</a>';
                                         $c = $message_tags_arr[$tag]['offset'];
                                         $d = $message_tags_arr[$tag]['length'];
                                         $post_text_message = cff_mb_substr_replace( $post_text_message, $b, $c, $d);
